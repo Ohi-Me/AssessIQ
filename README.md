@@ -1,246 +1,315 @@
 # SHL Assessment Recommender
 
-Conversational agent that recommends SHL assessments from the official product catalog. Built with FastAPI, hybrid retrieval (FAISS + BM25), and Groq LLM.
+Conversational agent that recommends SHL assessments from the official product catalog.
 
-## Quick Start
+Built with FastAPI, hybrid retrieval (FAISS + BM25), and LLM-grounded recommendation generation.
 
-### 1. Install dependencies
+---
+
+# Quick Start
+
+## Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Set environment variables
+---
+
+## Set environment variables
+
 ```bash
 cp .env.example .env
-# Edit .env — add GROQ_API_KEY and/or GEMINI_API_KEY
 ```
-Get keys free:
-- Groq: https://console.groq.com (fast, recommended)
-- Gemini: https://aistudio.google.com
 
-### 3. Build indexes (optional — auto-built at startup)
+Add API keys inside `.env`
+
+```env
+GROQ_API_KEY=your_key
+GEMINI_API_KEY=your_key
+```
+
+Get free API keys:
+
+* Groq: https://console.groq.com
+* Gemini: https://aistudio.google.com
+
+---
+
+## Build indexes
+
 ```bash
 python scripts/build_index.py
 ```
 
-### 4. Run server
+---
+
+## Run server
+
 ```bash
 uvicorn app.main:app --reload --port 8000
 ```
 
-### 5. Test
-```bash
-# Health check
-curl http://localhost:8000/health
+---
 
-# Chat
+## Test API
+
+```bash
+curl http://localhost:8000/health
+```
+
+---
+
+## Test Chat Endpoint
+
+```bash
 curl -X POST http://localhost:8000/chat \
   -H "Content-Type: application/json" \
-  -d '{"messages": [{"role": "user", "content": "I need to hire a mid-level Java developer"}]}'
+  -d "{\"messages\": [{\"role\": \"user\", \"content\": \"Hiring a Java developer who works with stakeholders\"}]}"
+```
 
-# Run test suite
+---
+
+## Run tests
+
+```bash
 pytest tests/ -v
 ```
 
-## API Reference
+---
 
-### GET /health
-```json
-{"status": "ok"}
+# Swagger Docs
+
+```text
+http://127.0.0.1:8000/docs
 ```
 
-### POST /chat
-**Request:**
+---
+
+# API Reference
+
+## GET /health
+
+```json
+{
+  "status": "ok"
+}
+```
+
+---
+
+## GET /
+
+```json
+{
+  "service": "SHL Assessment Recommender",
+  "version": "1.0.0",
+  "endpoints": {
+    "health": "GET /health",
+    "chat": "POST /chat",
+    "docs": "GET /docs"
+  }
+}
+```
+
+---
+
+## POST /chat
+
+### Request
+
 ```json
 {
   "messages": [
-    {"role": "user", "content": "Hiring a Java developer who works with stakeholders"},
-    {"role": "assistant", "content": "What seniority level?"},
-    {"role": "user", "content": "Mid-level, around 4 years"}
+    {
+      "role": "user",
+      "content": "Hiring a Java developer who works with stakeholders"
+    },
+    {
+      "role": "assistant",
+      "content": "What seniority level?"
+    },
+    {
+      "role": "user",
+      "content": "Mid-level, around 4 years"
+    }
   ]
 }
 ```
-**Response:**
+
+### Response
+
 ```json
 {
-  "reply": "Here are 5 assessments that fit a mid-level Java developer...",
+  "reply": "For a mid-level Java developer who works with stakeholders, Java 8 (New) evaluates OOP, collections, and backend Java fundamentals.",
+
   "recommendations": [
     {
       "name": "Java 8 (New)",
-      "url": "https://www.shl.com/...",
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/java-8-new/",
       "test_type": "K",
-      "score": 0.97,
-      "reason": null
+      "score": 1.0,
+      "reason": "Assesses modern Java 8 concepts relevant for backend development."
+    },
+    {
+      "name": "Core Java",
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/core-java/",
+      "test_type": "K",
+      "score": 0.997,
+      "reason": "Evaluates Java fundamentals, OOP, collections, and backend programming skills."
     },
     {
       "name": "OPQ32r",
-      "url": "https://www.shl.com/...",
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/opq32r/",
       "test_type": "P",
-      "score": 0.81,
-      "reason": null
+      "score": 0.896,
+      "reason": "Evaluates workplace personality traits, teamwork, and communication style."
     }
   ],
+
   "end_of_conversation": true
 }
 ```
 
-> `score` is a normalized 0.0–1.0 relevance score from the hybrid retriever. `reason` is an optional field for future enrichment.
+---
 
-## Architecture
+# Field Explanations
 
-```
+| Field               | Meaning                                                     |
+| ------------------- | ----------------------------------------------------------- |
+| score               | Normalized relevance score (0.0–1.0)                        |
+| reason              | Explanation of why assessment fits                          |
+| test_type           | K = Knowledge, A = Ability, P = Personality, C = Competency |
+| end_of_conversation | True when recommendation flow is complete                   |
+
+---
+
+# Architecture
+
+```text
 User Query
     ↓
-[1] Guardrails (guardrails.py) — pre-LLM, deterministic
+Guardrails
     ↓
-┌──────────────────────────────────────┐
-│ injection  → refuse immediately      │
-│ hard off-topic → refuse (no bypass)  │
-│ soft off-topic → refuse if no context│
-│ comparison → grounded compare        │
-│ refinement → update shortlist        │
-│ vague      → ask ONE clarifying Q    │
-│ ok         → recommend               │
-└──────────────────────────────────────┘
+Hybrid Retrieval (BM25 + FAISS)
     ↓
-[2] Hybrid Retriever (retriever.py)
+LLM Recommendation Generation
     ↓
-[3] LLM (Groq / Gemini) — grounded generation
+Validator Layer
     ↓
-[4] Validator (validator.py) — schema + URL check
-    ↓
-ChatResponse
+Final Response
 ```
 
-## Hybrid Retrieval
+---
 
-The retriever combines two complementary strategies for strong recall:
+# Hybrid Retrieval
 
-```
-Query
-  ├── BM25 Lexical Search (rank-bm25)
-  │     Exact keyword matching — great for assessment names,
-  │     role titles, and technical terms (e.g. "Java", "SQL")
-  │
-  └── FAISS Semantic Search (sentence-transformers)
-        all-MiniLM-L6-v2 embeddings — great for conceptual
-        similarity (e.g. "problem solving" → Inductive Reasoning)
-              ↓
-        RRF Fusion (BM25 weight=0.4, FAISS weight=0.6)
-              ↓
-        Metadata Filter + Scoring Boosts
-          · Seniority match  → ×1.3
-          · Test type match  → ×1.25
-          · Skill match      → ×1.15 per match
-              ↓
-        Top-10 results with normalized confidence scores (0.0–1.0)
-```
+The system combines:
 
-## Guardrails
+* BM25 lexical search
+* FAISS semantic search
+* Reciprocal Rank Fusion (RRF)
+* Metadata scoring boosts
 
-The system uses a two-tier guardrail approach for safety and quality:
+Boosts include:
 
-### Hard Off-Topic (always refused, no bypass)
-Salary/compensation, legal advice, lawsuits, employment law, HR actions (fire/terminate), weather, recipes, jokes, politics, religion.
+* Seniority match
+* Skill match
+* Test-type match
 
-> Even if the message contains a job role keyword (e.g. "salary for a Java developer"), it is refused.
+Returns:
 
-### Soft Off-Topic (refused only if no assessment context)
-Games, creative writing, competitor products (HackerRank, TestGorilla, Codility), competitor AI (ChatGPT, Gemini).
+* Top ranked assessments
+* Confidence scores
+* Grounded recommendations
 
-### Prompt Injection (always refused)
-"Ignore instructions", "system prompt", "jailbreak", "DAN", "pretend to be", and similar patterns are detected pre-LLM and refused immediately.
+---
 
-### Schema Validation
-Every recommendation passes through a validator that:
-- Checks URLs against the scraped catalog whitelist
-- Auto-corrects hallucinated URLs by matching assessment name
-- Drops any recommendation whose URL cannot be verified
-- Truncates to max 10 recommendations
+# Guardrails
 
-### Timeout Protection
-Each `/chat` call has a 25-second hard timeout (within the 30s spec limit).
+The system blocks:
 
-### Turn Cap
-Max 8 messages (user + assistant combined) per conversation. On hitting the cap, the agent returns a graceful close message with `end_of_conversation: true`.
+* Prompt injection attempts
+* Hard off-topic queries
+* Unsafe instructions
 
-## Stack
+Supports:
 
-| Component | Choice | Reason |
-|-----------|--------|--------|
-| Framework | FastAPI | Required by assignment |
-| Embeddings | sentence-transformers all-MiniLM-L6-v2 | Fast, free, good quality |
-| Vector DB | FAISS | In-memory, no external service needed |
-| Keyword | BM25 (rank-bm25) | Complements semantic for exact matches |
-| LLM | Groq llama-3.3-70b-versatile | Free tier, fast (<5s), high quality |
-| Fallback LLM | Google Gemini 2.0 Flash | Free tier backup |
-| Deployment | Railway / Render | Easy FastAPI hosting |
+* Clarification questions
+* Multi-turn conversations
+* Refinement requests
+* Assessment comparisons
 
-## Sample Conversation
+---
 
-```
-User: I need to assess candidates for a backend role
-Agent: What seniority level are you targeting — entry, mid-level, or senior?
+# Validator
 
-User: Senior, about 6+ years experience. They work with Java and also manage a small team.
-Agent: Based on that, here are my recommendations:
+Every recommendation passes validation that:
 
-  Java 8 (New) evaluates OOP, collections, concurrency, and Spring — essential for a
-  senior Java backend engineer. OPQ32r measures personality traits including leadership
-  and stakeholder management, relevant for someone managing a team. Verify Numerical
-  Reasoning assesses analytical thinking for senior-level problem solving...
+* Verifies SHL URLs
+* Removes invalid recommendations
+* Enriches reason fields
+* Enforces schema consistency
+* Limits responses to max 10 recommendations
 
-  [7 recommendations, end_of_conversation: true]
-```
+---
 
-## Deploy to Docker
+# Stack
+
+| Component      | Choice                       |
+| -------------- | ---------------------------- |
+| Framework      | FastAPI                      |
+| Embeddings     | all-MiniLM-L6-v2             |
+| Vector Search  | FAISS                        |
+| Keyword Search | BM25                         |
+| LLM            | Groq llama-3.3-70b-versatile |
+| Fallback LLM   | Gemini 2.0 Flash             |
+
+---
+
+# Performance
+
+* Cold start: ~0.3s
+* Typical latency: ~2–5s
+* Hard timeout: 25s per request
+* Embedding model preloaded during startup
+
+---
+
+# Deployment
+
+## Docker
 
 ```bash
 docker build -t shl-recommender .
+
 docker run -p 8000:8000 \
   -e GROQ_API_KEY=your_key \
   -e GEMINI_API_KEY=your_key \
   shl-recommender
 ```
 
-## Deploy to Railway
+---
+
+## Railway
 
 ```bash
-npm install -g @railway/cli
 railway login
 railway init
 railway up
-# Set env vars: GROQ_API_KEY, GEMINI_API_KEY
 ```
 
-## Deploy to Render
+---
 
-1. Push to GitHub
-2. Connect repo in Render dashboard
-3. Use `render.yaml` config
-4. Set `GROQ_API_KEY` and `GEMINI_API_KEY` in env vars
+## Render
 
-## Performance Notes
+* Push repository to GitHub
+* Connect repository in Render
+* Add environment variables
+* Deploy using `render.yaml`
 
-- **Cold start**: ~0.3s (indexes loaded from disk, model pre-warmed at startup)
-- **First request**: ~3–5s (LLM call only — model already loaded)
-- **Subsequent requests**: ~2–4s
-- **Timeout budget**: 25s per call (hard limit)
+---
 
-> The embedding model (`all-MiniLM-L6-v2`) is pre-warmed during startup so the first `/chat` call does not incur the ~20s model load penalty.
+# Author
 
-## Running Tests
-
-```bash
-# All tests
-pytest tests/ -v
-
-# Guardrails only (no LLM needed, fast)
-pytest tests/test_guardrails.py -v
-
-# Retrieval quality
-pytest tests/test_retriever.py -v
-
-# Full API integration (requires running server)
-pytest tests/test_api.py -v
-```
+Built for the SHL AI Research Intern Assignment.
