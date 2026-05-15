@@ -1,0 +1,1384 @@
+[
+  {
+    "name": "Verify Numerical Reasoning",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-numerical-reasoning/",
+    "description": "Measures ability to make correct decisions or inferences from numerical or statistical data. Suitable for roles requiring data analysis, financial reasoning, and quantitative problem-solving.",
+    "test_type": "A",
+    "duration_minutes": 17,
+    "remote_testing": true,
+    "adaptive_irt": true,
+    "job_levels": [
+      "graduate",
+      "professional",
+      "manager",
+      "senior"
+    ],
+    "skills": [
+      "numerical",
+      "data analysis",
+      "statistics",
+      "mathematics",
+      "quantitative"
+    ],
+    "tags": [
+      "verify",
+      "reasoning",
+      "data",
+      "numerical"
+    ],
+    "languages": [
+      "English",
+      "Hindi",
+      "French",
+      "German",
+      "Spanish"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verify-numerical-reasoning",
+    "search_text": "Verify Numerical Reasoning Measures ability to make correct decisions or inferences from numerical or statistical data. Suitable for roles requiring data analysis, financial reasoning, and quantitative problem-solving. numerical data analysis statistics mathematics quantitative verify reasoning data numerical graduate professional manager senior ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Verify Verbal Reasoning",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-verbal-reasoning/",
+    "description": "Measures ability to understand and evaluate the logic of various kinds of arguments expressed in written form. Essential for roles requiring communication, analysis of written information, and verbal comprehension.",
+    "test_type": "A",
+    "duration_minutes": 17,
+    "remote_testing": true,
+    "adaptive_irt": true,
+    "job_levels": [
+      "graduate",
+      "professional",
+      "manager",
+      "senior"
+    ],
+    "skills": [
+      "verbal",
+      "communication",
+      "reading comprehension",
+      "language",
+      "critical thinking"
+    ],
+    "tags": [
+      "verify",
+      "reasoning",
+      "verbal"
+    ],
+    "languages": [
+      "English",
+      "French",
+      "German",
+      "Spanish"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verify-verbal-reasoning",
+    "search_text": "Verify Verbal Reasoning Measures ability to understand and evaluate the logic of various kinds of arguments expressed in written form. Essential for roles requiring communication, analysis of written information, and verbal comprehension. verbal communication reading comprehension language critical thinking verify reasoning verbal graduate professional manager senior ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Verify Inductive Reasoning",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-inductive-reasoning/",
+    "description": "Measures ability to identify rules, patterns, and logical sequences in abstract shapes and figures. Assesses general learning ability and fluid intelligence for a wide range of roles.",
+    "test_type": "A",
+    "duration_minutes": 25,
+    "remote_testing": true,
+    "adaptive_irt": true,
+    "job_levels": [
+      "graduate",
+      "professional",
+      "manager"
+    ],
+    "skills": [
+      "logical reasoning",
+      "pattern recognition",
+      "abstract thinking",
+      "problem solving"
+    ],
+    "tags": [
+      "reasoning",
+      "verify",
+      "inductive"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verify-inductive-reasoning",
+    "search_text": "Verify Inductive Reasoning Measures ability to identify rules, patterns, and logical sequences in abstract shapes and figures. Assesses general learning ability and fluid intelligence for a wide range of roles. logical reasoning pattern recognition abstract thinking problem solving reasoning verify inductive graduate professional manager ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Verify Deductive Reasoning",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-deductive-reasoning/",
+    "description": "Measures ability to draw logical conclusions from information provided. Tests systematic thinking and the ability to check whether conclusions follow from given premises.",
+    "test_type": "A",
+    "duration_minutes": 20,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "graduate",
+      "professional",
+      "manager"
+    ],
+    "skills": [
+      "logical reasoning",
+      "deductive thinking",
+      "analytical",
+      "problem solving"
+    ],
+    "tags": [
+      "verify",
+      "reasoning",
+      "deductive"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verify-deductive-reasoning",
+    "search_text": "Verify Deductive Reasoning Measures ability to draw logical conclusions from information provided. Tests systematic thinking and the ability to check whether conclusions follow from given premises. logical reasoning deductive thinking analytical problem solving verify reasoning deductive graduate professional manager ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Verify Mechanical Comprehension",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-mechanical-comprehension/",
+    "description": "Measures understanding of mechanical principles and physical concepts. Suitable for engineering, manufacturing, and technical roles requiring mechanical knowledge.",
+    "test_type": "A",
+    "duration_minutes": 25,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "mechanical",
+      "engineering",
+      "physics",
+      "technical",
+      "manufacturing"
+    ],
+    "tags": [
+      "verify",
+      "comprehension",
+      "mechanical"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive",
+      "technical"
+    ],
+    "id": "verify-mechanical-comprehension",
+    "search_text": "Verify Mechanical Comprehension Measures understanding of mechanical principles and physical concepts. Suitable for engineering, manufacturing, and technical roles requiring mechanical knowledge. mechanical engineering physics technical manufacturing verify comprehension mechanical entry junior mid senior ability cognitive technical Ability & Aptitude"
+  },
+  {
+    "name": "Verify Spatial Reasoning",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-spatial-reasoning/",
+    "description": "Measures ability to mentally manipulate shapes and objects in three dimensions. Important for design, engineering, architecture, and technical roles.",
+    "test_type": "A",
+    "duration_minutes": 25,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid"
+    ],
+    "skills": [
+      "spatial reasoning",
+      "3D thinking",
+      "design",
+      "engineering",
+      "architecture"
+    ],
+    "tags": [
+      "verify",
+      "reasoning",
+      "spatial"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verify-spatial-reasoning",
+    "search_text": "Verify Spatial Reasoning Measures ability to mentally manipulate shapes and objects in three dimensions. Important for design, engineering, architecture, and technical roles. spatial reasoning 3D thinking design engineering architecture verify reasoning spatial entry junior mid ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Verify Reading Comprehension",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-reading-comprehension/",
+    "description": "Measures ability to read and understand written information quickly and accurately. Suitable for customer service, administration, and roles requiring document processing.",
+    "test_type": "A",
+    "duration_minutes": 20,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid"
+    ],
+    "skills": [
+      "reading",
+      "comprehension",
+      "language",
+      "administration",
+      "customer service"
+    ],
+    "tags": [
+      "verify",
+      "comprehension",
+      "reading",
+      "customer"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verify-reading-comprehension",
+    "search_text": "Verify Reading Comprehension Measures ability to read and understand written information quickly and accurately. Suitable for customer service, administration, and roles requiring document processing. reading comprehension language administration customer service verify comprehension reading customer entry junior mid ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "OPQ32r",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/opq32r/",
+    "description": "Occupational Personality Questionnaire. Measures 32 personality characteristics that predict workplace performance. The gold standard for personality assessment in occupational settings. Covers relationships with people, thinking style, and feelings and emotions.",
+    "test_type": "P",
+    "duration_minutes": 25,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid",
+      "senior",
+      "manager",
+      "executive",
+      "graduate"
+    ],
+    "skills": [
+      "personality",
+      "behavior",
+      "leadership",
+      "teamwork",
+      "communication",
+      "emotional intelligence"
+    ],
+    "tags": [
+      "opq32r",
+      "personality",
+      "opq"
+    ],
+    "languages": [
+      "English",
+      "Hindi",
+      "French",
+      "German",
+      "Spanish",
+      "Chinese",
+      "Japanese"
+    ],
+    "categories": [
+      "personality",
+      "behavioral"
+    ],
+    "id": "opq32r",
+    "search_text": "OPQ32r Occupational Personality Questionnaire. Measures 32 personality characteristics that predict workplace performance. The gold standard for personality assessment in occupational settings. Covers relationships with people, thinking style, and feelings and emotions. personality behavior leadership teamwork communication emotional intelligence opq32r personality opq entry junior mid senior manager executive graduate personality behavioral Personality & Behavior"
+  },
+  {
+    "name": "OPQ32",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/opq32/",
+    "description": "Full version of the Occupational Personality Questionnaire. Comprehensive measure of 32 personality characteristics relevant to workplace behavior and performance. Provides in-depth personality profile for selection, development, and coaching.",
+    "test_type": "P",
+    "duration_minutes": 35,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior",
+      "manager",
+      "executive"
+    ],
+    "skills": [
+      "personality",
+      "behavior",
+      "leadership",
+      "teamwork",
+      "stakeholder management",
+      "strategic thinking"
+    ],
+    "tags": [
+      "opq32",
+      "personality",
+      "opq"
+    ],
+    "languages": [
+      "English",
+      "French",
+      "German",
+      "Spanish"
+    ],
+    "categories": [
+      "personality",
+      "behavioral"
+    ],
+    "id": "opq32",
+    "search_text": "OPQ32 Full version of the Occupational Personality Questionnaire. Comprehensive measure of 32 personality characteristics relevant to workplace behavior and performance. Provides in-depth personality profile for selection, development, and coaching. personality behavior leadership teamwork stakeholder management strategic thinking opq32 personality opq junior mid senior manager executive personality behavioral Personality & Behavior"
+  },
+  {
+    "name": "Motivational Questionnaire (MQ)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/motivational-questionnaire-mq/",
+    "description": "Measures 18 motivational dimensions that drive performance. Identifies what energizes and motivates a candidate in the workplace. Useful for role fit, engagement, and retention predictions.",
+    "test_type": "P",
+    "duration_minutes": 25,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior",
+      "manager",
+      "executive"
+    ],
+    "skills": [
+      "motivation",
+      "engagement",
+      "values",
+      "culture fit",
+      "retention"
+    ],
+    "tags": [
+      "questionnaire",
+      "motivational"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "personality",
+      "behavioral"
+    ],
+    "id": "motivational-questionnaire--mq",
+    "search_text": "Motivational Questionnaire (MQ) Measures 18 motivational dimensions that drive performance. Identifies what energizes and motivates a candidate in the workplace. Useful for role fit, engagement, and retention predictions. motivation engagement values culture fit retention questionnaire motivational junior mid senior manager executive personality behavioral Personality & Behavior"
+  },
+  {
+    "name": "RemoteWorkQ",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/remoteworkq/",
+    "description": "Assesses personality characteristics important for effective remote working, including self-discipline, digital communication, and ability to work autonomously. Designed for remote and hybrid roles.",
+    "test_type": "P",
+    "duration_minutes": 10,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "remote work",
+      "self-management",
+      "digital communication",
+      "autonomy",
+      "productivity"
+    ],
+    "tags": [
+      "remoteworkq",
+      "personality"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "personality",
+      "behavioral"
+    ],
+    "id": "remoteworkq",
+    "search_text": "RemoteWorkQ Assesses personality characteristics important for effective remote working, including self-discipline, digital communication, and ability to work autonomously. Designed for remote and hybrid roles. remote work self-management digital communication autonomy productivity remoteworkq personality entry junior mid senior personality behavioral Personality & Behavior"
+  },
+  {
+    "name": "Situational Judgement Test — Customer Service",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/situational-judgement-test-customer-service/",
+    "description": "Measures judgment in customer service scenarios. Assesses how candidates handle customer interactions, complaints, and service situations. Suitable for frontline and contact center roles.",
+    "test_type": "B",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior"
+    ],
+    "skills": [
+      "customer service",
+      "communication",
+      "problem solving",
+      "empathy",
+      "conflict resolution"
+    ],
+    "tags": [
+      "situational",
+      "customer",
+      "test",
+      "service",
+      "judgement"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "situational",
+      "behavioral"
+    ],
+    "id": "situational-judgement-test---customer-service",
+    "search_text": "Situational Judgement Test — Customer Service Measures judgment in customer service scenarios. Assesses how candidates handle customer interactions, complaints, and service situations. Suitable for frontline and contact center roles. customer service communication problem solving empathy conflict resolution situational customer test service judgement entry junior situational behavioral Biodata & Situational Judgement"
+  },
+  {
+    "name": "Situational Judgement Test — Management",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/situational-judgement-test-management/",
+    "description": "Assesses managerial judgment in realistic workplace scenarios. Measures decision-making, team management, conflict resolution, and leadership effectiveness.",
+    "test_type": "B",
+    "duration_minutes": 35,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "manager",
+      "senior",
+      "executive"
+    ],
+    "skills": [
+      "management",
+      "leadership",
+      "decision making",
+      "conflict resolution",
+      "team management"
+    ],
+    "tags": [
+      "situational",
+      "test",
+      "management",
+      "leadership",
+      "judgement"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "situational",
+      "behavioral",
+      "leadership"
+    ],
+    "id": "situational-judgement-test---management",
+    "search_text": "Situational Judgement Test — Management Assesses managerial judgment in realistic workplace scenarios. Measures decision-making, team management, conflict resolution, and leadership effectiveness. management leadership decision making conflict resolution team management situational test management leadership judgement manager senior executive situational behavioral leadership Biodata & Situational Judgement"
+  },
+  {
+    "name": "Java 8 (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/java-8-new/",
+    "description": "Tests knowledge of Java 8 programming language including object-oriented programming, streams, lambda expressions, collections, and core Java APIs. Suitable for backend developers and software engineers.",
+    "test_type": "K",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "java",
+      "java 8",
+      "OOP",
+      "backend",
+      "programming",
+      "software development",
+      "streams",
+      "lambda"
+    ],
+    "tags": [
+      "programming",
+      "java",
+      "new"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "programming",
+      "knowledge",
+      "technical"
+    ],
+    "id": "java-8--new",
+    "search_text": "Java 8 (New) Tests knowledge of Java 8 programming language including object-oriented programming, streams, lambda expressions, collections, and core Java APIs. Suitable for backend developers and software engineers. java java 8 OOP backend programming software development streams lambda programming java new junior mid senior programming knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "Python (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/python-new/",
+    "description": "Tests knowledge of Python programming including data structures, functions, OOP, standard library, and common patterns. Suitable for data scientists, backend developers, and automation engineers.",
+    "test_type": "K",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "python",
+      "programming",
+      "backend",
+      "data science",
+      "automation",
+      "scripting"
+    ],
+    "tags": [
+      "data",
+      "programming",
+      "python",
+      "new"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "programming",
+      "knowledge",
+      "technical"
+    ],
+    "id": "python--new",
+    "search_text": "Python (New) Tests knowledge of Python programming including data structures, functions, OOP, standard library, and common patterns. Suitable for data scientists, backend developers, and automation engineers. python programming backend data science automation scripting data programming python new junior mid senior programming knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "SQL (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/sql-new/",
+    "description": "Tests SQL knowledge including queries, joins, aggregations, subqueries, stored procedures, and database design. Suitable for data analysts, data engineers, and backend developers.",
+    "test_type": "K",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "SQL",
+      "database",
+      "queries",
+      "data analysis",
+      "backend",
+      "data engineering"
+    ],
+    "tags": [
+      "sql",
+      "data",
+      "new"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "data",
+      "knowledge",
+      "technical"
+    ],
+    "id": "sql--new",
+    "search_text": "SQL (New) Tests SQL knowledge including queries, joins, aggregations, subqueries, stored procedures, and database design. Suitable for data analysts, data engineers, and backend developers. SQL database queries data analysis backend data engineering sql data new junior mid senior data knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "JavaScript (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/javascript-new/",
+    "description": "Tests JavaScript knowledge including ES6+, DOM manipulation, async/await, closures, and modern frontend patterns. Suitable for frontend developers and full-stack engineers.",
+    "test_type": "K",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "javascript",
+      "frontend",
+      "web development",
+      "ES6",
+      "async",
+      "DOM"
+    ],
+    "tags": [
+      "javascript",
+      "java",
+      "new"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "programming",
+      "knowledge",
+      "technical"
+    ],
+    "id": "javascript--new",
+    "search_text": "JavaScript (New) Tests JavaScript knowledge including ES6+, DOM manipulation, async/await, closures, and modern frontend patterns. Suitable for frontend developers and full-stack engineers. javascript frontend web development ES6 async DOM javascript java new junior mid senior programming knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "C# (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/c-sharp-new/",
+    "description": "Tests knowledge of C# language features, .NET framework, OOP principles, LINQ, async programming, and common patterns. Suitable for .NET developers and enterprise software engineers.",
+    "test_type": "K",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "C#",
+      ".NET",
+      "programming",
+      "OOP",
+      "enterprise",
+      "LINQ",
+      "backend"
+    ],
+    "tags": [
+      "programming",
+      "c#",
+      "new"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "programming",
+      "knowledge",
+      "technical"
+    ],
+    "id": "c---new",
+    "search_text": "C# (New) Tests knowledge of C# language features, .NET framework, OOP principles, LINQ, async programming, and common patterns. Suitable for .NET developers and enterprise software engineers. C# .NET programming OOP enterprise LINQ backend programming c# new junior mid senior programming knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "Microsoft Excel (New)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/microsoft-excel-new/",
+    "description": "Tests Excel proficiency including formulas, pivot tables, data analysis, charts, and macros. Suitable for analysts, finance, operations, and administrative roles.",
+    "test_type": "K",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid"
+    ],
+    "skills": [
+      "Excel",
+      "spreadsheets",
+      "data analysis",
+      "finance",
+      "reporting",
+      "formulas"
+    ],
+    "tags": [
+      "excel",
+      "finance",
+      "microsoft",
+      "administrative",
+      "new",
+      "data"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "office",
+      "knowledge",
+      "technical"
+    ],
+    "id": "microsoft-excel--new",
+    "search_text": "Microsoft Excel (New) Tests Excel proficiency including formulas, pivot tables, data analysis, charts, and macros. Suitable for analysts, finance, operations, and administrative roles. Excel spreadsheets data analysis finance reporting formulas excel finance microsoft administrative new data entry junior mid office knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "Core Java",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/core-java/",
+    "description": "Tests fundamental Java concepts including OOP, data structures, algorithms, exception handling, threading, and collections. Suitable for entry to mid-level Java developers.",
+    "test_type": "K",
+    "duration_minutes": 25,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid"
+    ],
+    "skills": [
+      "java",
+      "OOP",
+      "programming",
+      "backend",
+      "algorithms",
+      "data structures"
+    ],
+    "tags": [
+      "java",
+      "core",
+      "data"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "programming",
+      "knowledge",
+      "technical"
+    ],
+    "id": "core-java",
+    "search_text": "Core Java Tests fundamental Java concepts including OOP, data structures, algorithms, exception handling, threading, and collections. Suitable for entry to mid-level Java developers. java OOP programming backend algorithms data structures java core data entry junior mid programming knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "Data Analysis",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/data-analysis/",
+    "description": "Assesses ability to interpret, analyze, and draw conclusions from data using various analytical tools and methods. Covers statistics, data visualization, and business intelligence.",
+    "test_type": "K",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "data analysis",
+      "statistics",
+      "BI",
+      "reporting",
+      "analytics",
+      "data science"
+    ],
+    "tags": [
+      "analysis",
+      "data"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "data",
+      "knowledge",
+      "technical"
+    ],
+    "id": "data-analysis",
+    "search_text": "Data Analysis Assesses ability to interpret, analyze, and draw conclusions from data using various analytical tools and methods. Covers statistics, data visualization, and business intelligence. data analysis statistics BI reporting analytics data science analysis data junior mid senior data knowledge technical Knowledge & Skills"
+  },
+  {
+    "name": "Automata — Fix the Code",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/automata-fix-the-code/",
+    "description": "Coding simulation where candidates debug and fix code snippets across multiple programming languages. Tests debugging skills, code comprehension, and problem-solving in realistic scenarios.",
+    "test_type": "S",
+    "duration_minutes": 45,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "debugging",
+      "programming",
+      "problem solving",
+      "code review",
+      "multiple languages"
+    ],
+    "tags": [
+      "code",
+      "programming",
+      "automata",
+      "fix",
+      "the",
+      "coding"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "simulation",
+      "programming",
+      "technical"
+    ],
+    "id": "automata---fix-the-code",
+    "search_text": "Automata — Fix the Code Coding simulation where candidates debug and fix code snippets across multiple programming languages. Tests debugging skills, code comprehension, and problem-solving in realistic scenarios. debugging programming problem solving code review multiple languages code programming automata fix the coding junior mid senior simulation programming technical Simulations"
+  },
+  {
+    "name": "Automata Pro",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/automata-pro/",
+    "description": "Advanced coding assessment simulation testing ability to write, debug, and optimize code. Suitable for mid to senior software engineers. Covers algorithms, data structures, and software design patterns.",
+    "test_type": "S",
+    "duration_minutes": 60,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "coding",
+      "algorithms",
+      "data structures",
+      "software design",
+      "programming"
+    ],
+    "tags": [
+      "data",
+      "coding",
+      "pro",
+      "automata"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "simulation",
+      "programming",
+      "technical"
+    ],
+    "id": "automata-pro",
+    "search_text": "Automata Pro Advanced coding assessment simulation testing ability to write, debug, and optimize code. Suitable for mid to senior software engineers. Covers algorithms, data structures, and software design patterns. coding algorithms data structures software design programming data coding pro automata mid senior simulation programming technical Simulations"
+  },
+  {
+    "name": "Global Skills Assessment (GSA)",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/global-skills-assessment/",
+    "description": "Measures 8 global competencies critical for success in international and cross-cultural roles. Assesses adaptability, cultural agility, communication, and global mindset.",
+    "test_type": "C",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "mid",
+      "senior",
+      "manager",
+      "executive"
+    ],
+    "skills": [
+      "global mindset",
+      "cultural agility",
+      "leadership",
+      "adaptability",
+      "international",
+      "communication"
+    ],
+    "tags": [
+      "global",
+      "gsa",
+      "skills",
+      "assessment"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "competency",
+      "leadership"
+    ],
+    "id": "global-skills-assessment--gsa",
+    "search_text": "Global Skills Assessment (GSA) Measures 8 global competencies critical for success in international and cross-cultural roles. Assesses adaptability, cultural agility, communication, and global mindset. global mindset cultural agility leadership adaptability international communication global gsa skills assessment mid senior manager executive competency leadership Competency Based"
+  },
+  {
+    "name": "Leadership Report",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/leadership-report/",
+    "description": "Comprehensive leadership assessment combining personality, motivation, and competency measures. Predicts leadership effectiveness across key dimensions including strategy, execution, and people leadership.",
+    "test_type": "P",
+    "duration_minutes": 40,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "manager",
+      "senior",
+      "executive"
+    ],
+    "skills": [
+      "leadership",
+      "strategy",
+      "people management",
+      "decision making",
+      "executive presence"
+    ],
+    "tags": [
+      "personality",
+      "report",
+      "leadership"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "personality",
+      "behavioral",
+      "competency",
+      "leadership"
+    ],
+    "id": "leadership-report",
+    "search_text": "Leadership Report Comprehensive leadership assessment combining personality, motivation, and competency measures. Predicts leadership effectiveness across key dimensions including strategy, execution, and people leadership. leadership strategy people management decision making executive presence personality report leadership manager senior executive personality behavioral competency leadership Personality & Behavior"
+  },
+  {
+    "name": "Contact Center Simulation",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/contact-center-simulation/",
+    "description": "Realistic simulation of contact center work scenarios. Assesses multi-tasking, customer handling, data entry accuracy, and problem-solving in a simulated call center environment.",
+    "test_type": "S",
+    "duration_minutes": 45,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior"
+    ],
+    "skills": [
+      "customer service",
+      "multitasking",
+      "data entry",
+      "communication",
+      "problem solving"
+    ],
+    "tags": [
+      "simulation",
+      "center",
+      "customer",
+      "data",
+      "contact"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "customer service",
+      "simulation",
+      "technical"
+    ],
+    "id": "contact-center-simulation",
+    "search_text": "Contact Center Simulation Realistic simulation of contact center work scenarios. Assesses multi-tasking, customer handling, data entry accuracy, and problem-solving in a simulated call center environment. customer service multitasking data entry communication problem solving simulation center customer data contact entry junior customer service simulation technical Simulations"
+  },
+  {
+    "name": "Financial Services Simulation",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/financial-services-simulation/",
+    "description": "Simulates financial services work tasks including customer queries, compliance scenarios, and financial product knowledge. Suitable for banking, insurance, and financial advisory roles.",
+    "test_type": "S",
+    "duration_minutes": 45,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid"
+    ],
+    "skills": [
+      "finance",
+      "banking",
+      "compliance",
+      "customer service",
+      "financial products"
+    ],
+    "tags": [
+      "simulation",
+      "customer",
+      "services",
+      "financial",
+      "banking",
+      "compliance"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "simulation",
+      "finance",
+      "technical"
+    ],
+    "id": "financial-services-simulation",
+    "search_text": "Financial Services Simulation Simulates financial services work tasks including customer queries, compliance scenarios, and financial product knowledge. Suitable for banking, insurance, and financial advisory roles. finance banking compliance customer service financial products simulation customer services financial banking compliance entry junior mid simulation finance technical Simulations"
+  },
+  {
+    "name": "Graduate 8.0",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/graduate-8-0/",
+    "description": "Comprehensive battery for graduate recruitment including verbal, numerical, and inductive reasoning. Norm-referenced for graduate population. The standard benchmark for graduate hiring.",
+    "test_type": "A",
+    "duration_minutes": 60,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "graduate",
+      "entry"
+    ],
+    "skills": [
+      "verbal reasoning",
+      "numerical reasoning",
+      "inductive reasoning",
+      "graduate",
+      "cognitive ability"
+    ],
+    "tags": [
+      "inductive",
+      "numerical",
+      "graduate",
+      "verbal"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "graduate",
+      "cognitive"
+    ],
+    "id": "graduate-8-0",
+    "search_text": "Graduate 8.0 Comprehensive battery for graduate recruitment including verbal, numerical, and inductive reasoning. Norm-referenced for graduate population. The standard benchmark for graduate hiring. verbal reasoning numerical reasoning inductive reasoning graduate cognitive ability inductive numerical graduate verbal graduate entry ability graduate cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Workplace Personality Inventory II",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/workplace-personality-inventory-ii/",
+    "description": "Personality inventory measuring 23 work-relevant traits organized into five broad factors. Predicts performance across a wide range of occupations with strong reliability and validity evidence.",
+    "test_type": "P",
+    "duration_minutes": 30,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "personality",
+      "behavior",
+      "work traits",
+      "performance prediction"
+    ],
+    "tags": [
+      "personality",
+      "inventory",
+      "workplace"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "personality",
+      "behavioral"
+    ],
+    "id": "workplace-personality-inventory-ii",
+    "search_text": "Workplace Personality Inventory II Personality inventory measuring 23 work-relevant traits organized into five broad factors. Predicts performance across a wide range of occupations with strong reliability and validity evidence. personality behavior work traits performance prediction personality inventory workplace entry junior mid senior personality behavioral Personality & Behavior"
+  },
+  {
+    "name": "Verbal Reasoning",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verbal-reasoning/",
+    "description": "Classic verbal reasoning test measuring ability to understand written arguments, draw conclusions, and evaluate information presented in text form. Widely used for professional and managerial selection.",
+    "test_type": "A",
+    "duration_minutes": 19,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "graduate",
+      "junior",
+      "mid",
+      "professional"
+    ],
+    "skills": [
+      "verbal reasoning",
+      "communication",
+      "critical thinking",
+      "reading",
+      "language"
+    ],
+    "tags": [
+      "reasoning",
+      "verbal"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verbal-reasoning",
+    "search_text": "Verbal Reasoning Classic verbal reasoning test measuring ability to understand written arguments, draw conclusions, and evaluate information presented in text form. Widely used for professional and managerial selection. verbal reasoning communication critical thinking reading language reasoning verbal graduate junior mid professional ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Numerical Reasoning",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/numerical-reasoning/",
+    "description": "Classic numerical reasoning test measuring ability to work with numerical data, interpret tables and charts, and solve mathematical problems. Standard for professional and managerial selection.",
+    "test_type": "A",
+    "duration_minutes": 25,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "graduate",
+      "junior",
+      "mid",
+      "professional"
+    ],
+    "skills": [
+      "numerical reasoning",
+      "mathematics",
+      "data interpretation",
+      "finance",
+      "analysis"
+    ],
+    "tags": [
+      "numerical",
+      "reasoning",
+      "data"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "numerical-reasoning",
+    "search_text": "Numerical Reasoning Classic numerical reasoning test measuring ability to work with numerical data, interpret tables and charts, and solve mathematical problems. Standard for professional and managerial selection. numerical reasoning mathematics data interpretation finance analysis numerical reasoning data graduate junior mid professional ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Customer Contact Styles Questionnaire",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/customer-contact-styles-questionnaire/",
+    "description": "Personality-based questionnaire measuring traits critical for customer-facing roles. Covers interpersonal effectiveness, resilience, emotional control, and service orientation.",
+    "test_type": "P",
+    "duration_minutes": 20,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior"
+    ],
+    "skills": [
+      "customer service",
+      "personality",
+      "communication",
+      "resilience",
+      "empathy"
+    ],
+    "tags": [
+      "personality",
+      "styles",
+      "customer",
+      "questionnaire",
+      "contact"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "personality",
+      "behavioral",
+      "customer service"
+    ],
+    "id": "customer-contact-styles-questionnaire",
+    "search_text": "Customer Contact Styles Questionnaire Personality-based questionnaire measuring traits critical for customer-facing roles. Covers interpersonal effectiveness, resilience, emotional control, and service orientation. customer service personality communication resilience empathy personality styles customer questionnaire contact entry junior personality behavioral customer service Personality & Behavior"
+  },
+  {
+    "name": "Verify G+",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-g-plus/",
+    "description": "Adaptive cognitive ability battery combining verbal, numerical, and inductive reasoning in a shorter adaptive format. Provides a general cognitive ability (g) score. Suitable for volume screening.",
+    "test_type": "A",
+    "duration_minutes": 36,
+    "remote_testing": true,
+    "adaptive_irt": true,
+    "job_levels": [
+      "entry",
+      "junior",
+      "mid",
+      "graduate"
+    ],
+    "skills": [
+      "cognitive ability",
+      "verbal",
+      "numerical",
+      "inductive",
+      "general intelligence"
+    ],
+    "tags": [
+      "verify",
+      "inductive",
+      "verbal",
+      "numerical"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive"
+    ],
+    "id": "verify-g",
+    "search_text": "Verify G+ Adaptive cognitive ability battery combining verbal, numerical, and inductive reasoning in a shorter adaptive format. Provides a general cognitive ability (g) score. Suitable for volume screening. cognitive ability verbal numerical inductive general intelligence verify inductive verbal numerical entry junior mid graduate ability cognitive Ability & Aptitude"
+  },
+  {
+    "name": "Entry Level Sales 7.1",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1/",
+    "description": "Pre-packaged battery for entry-level sales roles including cognitive ability and personality measures. Predicts sales performance for frontline and inside sales positions.",
+    "test_type": "B",
+    "duration_minutes": 35,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior"
+    ],
+    "skills": [
+      "sales",
+      "communication",
+      "persuasion",
+      "resilience",
+      "customer orientation"
+    ],
+    "tags": [
+      "level",
+      "personality",
+      "entry",
+      "sales"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "situational",
+      "behavioral",
+      "sales"
+    ],
+    "id": "entry-level-sales-7-1",
+    "search_text": "Entry Level Sales 7.1 Pre-packaged battery for entry-level sales roles including cognitive ability and personality measures. Predicts sales performance for frontline and inside sales positions. sales communication persuasion resilience customer orientation level personality entry sales entry junior situational behavioral sales Biodata & Situational Judgement"
+  },
+  {
+    "name": "Dependability and Safety Instrument",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/dependability-and-safety-instrument/",
+    "description": "Measures safety-related attitudes, reliability, and dependability behaviors. Suitable for roles where safety compliance, rule-following, and reliability are critical.",
+    "test_type": "P",
+    "duration_minutes": 20,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior"
+    ],
+    "skills": [
+      "safety",
+      "compliance",
+      "reliability",
+      "dependability",
+      "manufacturing",
+      "operations"
+    ],
+    "tags": [
+      "instrument",
+      "safety",
+      "and",
+      "dependability",
+      "compliance"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "personality",
+      "behavioral",
+      "safety"
+    ],
+    "id": "dependability-and-safety-instrument",
+    "search_text": "Dependability and Safety Instrument Measures safety-related attitudes, reliability, and dependability behaviors. Suitable for roles where safety compliance, rule-following, and reliability are critical. safety compliance reliability dependability manufacturing operations instrument safety and dependability compliance entry junior personality behavioral safety Personality & Behavior"
+  },
+  {
+    "name": "Technology Professional 8.0",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/technology-professional-8-0/",
+    "description": "Assessment battery for technology professionals combining cognitive ability and personality. Designed for software developers, IT professionals, data scientists, and technology roles.",
+    "test_type": "A",
+    "duration_minutes": 50,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "junior",
+      "mid",
+      "senior"
+    ],
+    "skills": [
+      "technology",
+      "programming",
+      "cognitive ability",
+      "problem solving",
+      "IT",
+      "software development"
+    ],
+    "tags": [
+      "personality",
+      "technology",
+      "data",
+      "professional"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "cognitive",
+      "technical"
+    ],
+    "id": "technology-professional-8-0",
+    "search_text": "Technology Professional 8.0 Assessment battery for technology professionals combining cognitive ability and personality. Designed for software developers, IT professionals, data scientists, and technology roles. technology programming cognitive ability problem solving IT software development personality technology data professional junior mid senior ability cognitive technical Ability & Aptitude"
+  },
+  {
+    "name": "Administrative Professional 8.0",
+    "url": "https://www.shl.com/solutions/products/product-catalog/view/administrative-professional-8-0/",
+    "description": "Assessment battery for administrative and clerical roles. Tests verbal ability, numerical ability, and behavioral traits relevant to office and support functions.",
+    "test_type": "A",
+    "duration_minutes": 45,
+    "remote_testing": true,
+    "adaptive_irt": false,
+    "job_levels": [
+      "entry",
+      "junior"
+    ],
+    "skills": [
+      "administration",
+      "office",
+      "verbal",
+      "numerical",
+      "organization",
+      "clerical"
+    ],
+    "tags": [
+      "numerical",
+      "administrative",
+      "professional",
+      "verbal",
+      "office"
+    ],
+    "languages": [
+      "English"
+    ],
+    "categories": [
+      "ability",
+      "administrative",
+      "cognitive"
+    ],
+    "id": "administrative-professional-8-0",
+    "search_text": "Administrative Professional 8.0 Assessment battery for administrative and clerical roles. Tests verbal ability, numerical ability, and behavioral traits relevant to office and support functions. administration office verbal numerical organization clerical numerical administrative professional verbal office entry junior ability administrative cognitive Ability & Aptitude"
+  }
+]
