@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: shl-recommender
+    name: assessiq
     runtime: python
     buildCommand: pip install -r requirements.txt && python scripts/scrape_catalog.py --use-fallback
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1

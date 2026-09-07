@@ -1,4 +1,4 @@
-# SHL Assessment Recommender — Dependencies
+# AssessIQ — Dependencies
 # Python 3.11+
 
 # Web Framework

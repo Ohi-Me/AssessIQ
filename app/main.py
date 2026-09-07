@@ -1,5 +1,5 @@
 """
-SHL Assessment Recommender — FastAPI Application
+AssessIQ — FastAPI Application
 GET  /health  → readiness check
 POST /chat    → conversational agent
 """
@@ -26,7 +26,7 @@ from app.agent import process_chat
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("Starting SHL Recommender...")
+    logger.info("Starting AssessIQ...")
     start = time.time()
 
     # Load catalog
@@ -40,7 +40,7 @@ async def lifespan(app: FastAPI):
     elapsed = time.time() - start
     logger.info(f"Startup complete in {elapsed:.1f}s")
     yield
-    logger.info("Shutting down SHL Recommender...")
+    logger.info("Shutting down AssessIQ...")
 
 
 # ──────────────────────────────────────────────────────────────────
@@ -48,8 +48,8 @@ async def lifespan(app: FastAPI):
 # ──────────────────────────────────────────────────────────────────
 
 app = FastAPI(
-    title="SHL Assessment Recommender",
-    description="Conversational agent for recommending SHL assessments",
+    title="AssessIQ",
+    description="Conversational agent that recommends talent assessments from SHL's product catalog",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -142,7 +142,7 @@ async def chat(request: ChatRequest):
 @app.get("/")
 async def root():
     return {
-        "service": "SHL Assessment Recommender",
+        "service": "AssessIQ",
         "version": "1.0.0",
         "endpoints": {
             "health": "GET /health",

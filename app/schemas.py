@@ -1,6 +1,6 @@
 """
 Pydantic schemas — strict API contract.
-The response schema is NON-NEGOTIABLE per assignment spec.
+The response schema is fixed by design: downstream clients depend on this exact shape.
 """
 
 from typing import List, Optional

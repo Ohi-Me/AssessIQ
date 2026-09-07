@@ -29,7 +29,8 @@ from app.prompts import (
 from app.validator import validate_recommendations, extract_recommendations_from_llm_reply
 from app.llm_client import call_llm
 
-# Hard cap from assignment spec: max 8 messages (user + assistant combined)
+# Hard cap: max 8 messages (user + assistant combined) keeps conversations
+# focused and bounds LLM context/latency per request.
 MAX_MESSAGES = 8
 
 
@@ -220,8 +221,8 @@ def process_chat(messages: List[Dict]) -> ChatResponse:
     """
     logger.info(f"Processing chat with {len(messages)} messages.")
 
-    # Hard turn cap: assignment spec says max 8 messages total.
-    # If we're AT the cap, return graceful close instead of erroring.
+    # Hard turn cap (see MAX_MESSAGES). If we're AT the cap, return a
+    # graceful close instead of erroring.
     if len(messages) >= MAX_MESSAGES:
         logger.warning(f"Conversation at turn cap ({len(messages)} messages).")
         return handle_max_turns()
