@@ -1,7 +1,6 @@
 "use client";
 
 import { useReveal } from "@/lib/useReveal";
-import GradeMark from "./GradeMark";
 
 const LEXICAL = ["Core Java", "Java 8 (New)", "SQL Server", "Selenium"];
 const SEMANTIC = ["Java 8 (New)", "OPQ32r", "Verify - Numerical", "Core Java"];
@@ -71,14 +70,12 @@ export default function FusionDiagram() {
               key={i}
               d={d}
               fill="none"
-              stroke="var(--ink)"
-              strokeWidth={1.25}
-              strokeOpacity={0.4}
-              strokeDasharray={c.col === "sem" ? "1 5" : "1 0"}
-              pathLength={1}
+              className="stroke-ink"
+              strokeWidth={2}
+              strokeDasharray={c.col === "sem" ? "6 4" : undefined}
               style={{
-                strokeDashoffset: visible ? 0 : 1,
-                transition: `stroke-dashoffset 900ms ease ${i * 90}ms`,
+                strokeOpacity: visible ? 0.75 : 0,
+                transition: `stroke-opacity 600ms ease ${i * 90}ms`,
               }}
             />
           );
@@ -99,8 +96,7 @@ export default function FusionDiagram() {
               width={LEX_X.boxRight - LEX_X.boxLeft}
               height={BOX_H}
               rx={4}
-              className="fill-bg"
-              stroke="var(--ink)"
+              className="fill-bg stroke-ink"
               strokeOpacity={0.7}
             />
             <text
@@ -129,8 +125,7 @@ export default function FusionDiagram() {
               width={SEM_X.boxRight - SEM_X.boxLeft}
               height={BOX_H}
               rx={4}
-              className="fill-surface"
-              stroke="var(--ink)"
+              className="fill-surface stroke-ink"
               strokeDasharray="4 3"
               strokeOpacity={0.7}
             />
@@ -159,8 +154,9 @@ export default function FusionDiagram() {
               width={FUSED_X.boxRight - FUSED_X.boxLeft}
               height={BOX_H}
               rx={4}
-              className={rank === 0 ? "fill-ink" : "fill-bg"}
-              stroke="var(--ink)"
+              className={
+                rank === 0 ? "fill-ink stroke-ink" : "fill-bg stroke-ink"
+              }
             />
             <text
               x={FUSED_X.textX}
@@ -176,12 +172,23 @@ export default function FusionDiagram() {
             </text>
           </g>
         ))}
+
+        <g
+          style={{
+            opacity: visible ? 1 : 0,
+            transition: "opacity 500ms ease 900ms",
+          }}
+        >
+          <path
+            d="M441 44 l5 6 l11 -14"
+            fill="none"
+            className="stroke-bg"
+            strokeWidth={2.25}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
       </svg>
-      <div className="relative mx-auto flex max-w-[640px] justify-center">
-        <GradeMark
-          className={`h-6 w-10 text-ink transition-opacity duration-500 ${visible ? "opacity-100" : "opacity-0"}`}
-        />
-      </div>
     </div>
   );
 }

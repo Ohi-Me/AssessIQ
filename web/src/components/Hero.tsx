@@ -2,24 +2,17 @@ import ChatDemo from "./ChatDemo";
 
 export default function Hero() {
   return (
-    <header className="relative overflow-hidden border-b border-border">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(to bottom, transparent, transparent 34px, var(--border) 34px, var(--border) 35px)",
-          maskImage: "linear-gradient(to bottom, black, transparent 85%)",
-        }}
-      />
-
-      <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+    <header className="relative">
+      <nav className="relative z-10 mx-auto flex max-w-6xl items-center justify-between border-b border-border px-6 py-5">
         <span className="font-display text-lg tracking-tight">
           Assess<span className="italic">IQ</span>
         </span>
-        <div className="flex items-center gap-6 font-mono text-xs uppercase tracking-wide text-muted">
+        <div className="flex items-center gap-7 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
           <a href="#how-it-works" className="hover:text-ink">
             How it works
+          </a>
+          <a href="#guardrails" className="hidden hover:text-ink sm:inline">
+            Guardrails
           </a>
           <a href="#api" className="hover:text-ink">
             API
@@ -28,55 +21,56 @@ export default function Hero() {
             href="https://github.com/Ohi-Me/AssessIQ"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded border border-border px-3 py-1.5 text-ink hover:border-ink"
+            className="text-ink underline decoration-border underline-offset-4 hover:decoration-ink"
           >
             GitHub ↗
           </a>
         </div>
       </nav>
 
-      <div className="relative mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            Conversational assessment recommender
-          </p>
-          <h1 className="mt-4 font-display text-[2.75rem] leading-[1.05] tracking-tight sm:text-6xl">
-            Describe the hire.
+      <div className="relative mx-auto grid max-w-6xl gap-y-16 px-6 pb-16 pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-16 lg:pb-24">
+        <div className="flex flex-col justify-center">
+          <p className="label">Hiring assessments, retrieved not guessed</p>
+
+          <h1 className="display mt-6 text-[3.25rem] sm:text-[4.5rem] lg:text-[5rem]">
+            Describe
             <br />
-            Get the{" "}
-            <span className="relative whitespace-nowrap">
-              <span className="relative z-10">right assessment</span>
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-surface-2 sm:h-4"
-              />
-            </span>
-            .
+            the hire.
+            <br />
+            Get the test.
           </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
-            AssessIQ turns a plain-English hiring need into ranked, cited
-            recommendations from SHL&apos;s real assessment catalog — asking
-            one clarifying question at a time instead of dumping a list.
+
+          <p className="mt-8 max-w-lg text-[15px] leading-relaxed text-muted">
+            A conversational agent that turns a plain-English hiring need into
+            ranked, cited assessments from SHL&apos;s real catalog. It asks for
+            the one signal it&apos;s missing instead of dumping a list — and it
+            can only recommend what it actually retrieved.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#demo"
-              className="rounded-sm bg-ink px-5 py-2.5 text-sm font-medium text-bg"
+              className="bg-ink px-6 py-3 text-sm font-medium text-bg transition-opacity hover:opacity-85"
             >
-              Try it live →
+              Try the live agent
             </a>
             <a
               href="#how-it-works"
-              className="rounded-sm border border-border px-5 py-2.5 text-sm hover:border-ink"
+              className="border border-border px-6 py-3 text-sm transition-colors hover:border-ink"
             >
-              See how it works
+              How it works
             </a>
           </div>
         </div>
 
-        <div id="demo" className="h-[520px] scroll-mt-24">
-          <ChatDemo />
-        </div>
+        <figure className="flex flex-col lg:pt-2">
+          <div className="h-[470px]" id="demo">
+            <ChatDemo />
+          </div>
+          <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-2">
+            Fig. 1 — live endpoint, not a recording
+          </figcaption>
+        </figure>
       </div>
     </header>
   );

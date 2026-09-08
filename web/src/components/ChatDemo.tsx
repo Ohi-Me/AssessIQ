@@ -100,7 +100,7 @@ export default function ChatDemo() {
   const busy = status === "sending" || status === "waking";
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-md border border-border bg-bg">
+    <div className="flex h-full flex-col overflow-hidden border border-border bg-bg">
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
         <span className="font-mono text-xs text-muted">POST /chat</span>
         <span className="ml-auto flex items-center gap-1.5 font-mono text-[11px] text-muted">
@@ -125,7 +125,7 @@ export default function ChatDemo() {
                 <button
                   key={s}
                   onClick={() => send(s)}
-                  className="rounded-sm border border-border bg-surface px-3 py-2 text-left text-sm transition-colors hover:border-ink"
+                  className="border border-border bg-surface px-3 py-2 text-left text-sm transition-colors hover:border-ink"
                 >
                   {s}
                 </button>
@@ -139,8 +139,8 @@ export default function ChatDemo() {
             <div
               className={
                 t.message.role === "user"
-                  ? "ml-auto max-w-[85%] rounded-md rounded-br-sm bg-ink px-4 py-2.5 text-sm text-bg"
-                  : "mr-auto max-w-[90%] rounded-md rounded-bl-sm border border-border bg-surface px-4 py-2.5 text-sm"
+                  ? "ml-auto max-w-[85%] bg-ink px-4 py-2.5 text-sm text-bg"
+                  : "mr-auto max-w-[90%] border border-border bg-surface px-4 py-2.5 text-sm"
               }
             >
               {t.message.content}
@@ -151,7 +151,7 @@ export default function ChatDemo() {
                 {t.recommendations.map((r, idx) => (
                   <li
                     key={r.name}
-                    className="relative rounded-md border border-border bg-bg p-3"
+                    className="relative border border-border bg-bg p-3"
                   >
                     {idx === 0 && (
                       <GradeMark className="absolute -right-2 -top-4 h-7 w-12 text-ink" />
@@ -160,7 +160,7 @@ export default function ChatDemo() {
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="font-medium">{r.name}</span>
-                          <span className="rounded-full border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted">
+                          <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
                             {r.test_type} ·{" "}
                             {TEST_TYPE_LABELS[r.test_type] ?? "Assessment"}
                           </span>
@@ -187,7 +187,7 @@ export default function ChatDemo() {
         ))}
 
         {busy && (
-          <div className="mr-auto flex max-w-[80%] items-center gap-2 rounded-md rounded-bl-sm border border-border bg-surface px-4 py-3">
+          <div className="mr-auto flex max-w-[80%] items-center gap-2 border border-border bg-surface px-4 py-3">
             <span className="flex gap-1">
               <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted [animation-delay:-0.3s]" />
               <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted [animation-delay:-0.15s]" />
@@ -202,7 +202,7 @@ export default function ChatDemo() {
         )}
 
         {status === "error" && (
-          <div className="rounded-md border border-danger/40 bg-danger/5 px-4 py-3 text-sm text-danger">
+          <div className="border border-danger/40 bg-danger/5 px-4 py-3 text-sm text-danger">
             {errorText}
           </div>
         )}
@@ -212,7 +212,7 @@ export default function ChatDemo() {
         {ended ? (
           <button
             onClick={reset}
-            className="w-full rounded-sm bg-ink px-4 py-2.5 text-sm font-medium text-bg"
+            className="w-full bg-ink px-4 py-2.5 text-sm font-medium text-bg"
           >
             Start a new conversation
           </button>
@@ -229,12 +229,12 @@ export default function ChatDemo() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Describe who you're hiring…"
               disabled={busy}
-              className="flex-1 rounded-sm border border-border bg-surface px-3 py-2.5 text-sm placeholder:text-muted-2 focus:border-ink"
+              className="flex-1 border border-border bg-surface px-3 py-2.5 text-sm placeholder:text-muted-2 focus:border-ink"
             />
             <button
               type="submit"
               disabled={busy || !input.trim()}
-              className="rounded-sm bg-ink px-4 py-2.5 text-sm font-medium text-bg disabled:opacity-30"
+              className="bg-ink px-4 py-2.5 text-sm font-medium text-bg disabled:opacity-30"
             >
               Send
             </button>

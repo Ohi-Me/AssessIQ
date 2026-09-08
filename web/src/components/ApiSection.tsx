@@ -24,15 +24,13 @@ export default function ApiSection() {
   return (
     <section id="api" className="border-b border-border bg-surface">
       <div className="mx-auto max-w-6xl px-6 py-24">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-          For developers
-        </p>
-        <h2 className="mt-3 max-w-xl font-display text-3xl tracking-tight sm:text-4xl">
-          One endpoint. Full history in, next reply out.
+        <p className="label rule-label">For developers</p>
+        <h2 className="display mt-10 max-w-xl text-3xl sm:text-4xl">
+          One endpoint. History in, next turn out.
         </h2>
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
-          Stateless by design — send the whole conversation each time, get
-          the agent&apos;s next turn back. No sessions to manage.
+        <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-muted">
+          Stateless by design — send the whole conversation each time and get
+          the agent&apos;s next turn back. No sessions to manage on either side.
         </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -55,8 +53,8 @@ export default function ApiSection() {
 
 function CodeBlock({ label, code }: { label: string; code: string }) {
   return (
-    <div className="overflow-hidden rounded-md border border-border bg-bg">
-      <div className="border-b border-border px-4 py-2.5 font-mono text-xs uppercase tracking-wide text-muted">
+    <div className="overflow-hidden border border-border bg-bg">
+      <div className="border-b border-border px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
         {label}
       </div>
       <pre className="overflow-x-auto p-4 font-mono text-[13px] leading-relaxed">
