@@ -12,6 +12,10 @@ from loguru import logger
 
 load_dotenv()
 
+# Overridable by env so a provider deprecation can be handled without a deploy.
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+
 
 # ──────────────────────────────────────────────────────────────────
 # Groq client
@@ -23,8 +27,6 @@ def _call_groq(prompt: str, max_tokens: int = 600) -> Optional[str]:
 
         api_key = os.getenv("GROQ_API_KEY", "")
 
-        # print("Groq key exists:", bool(api_key))
-
         if not api_key:
             logger.error("Groq API key missing")
             return None
@@ -32,7 +34,7 @@ def _call_groq(prompt: str, max_tokens: int = 600) -> Optional[str]:
         client = Groq(api_key=api_key)
 
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
             max_tokens=max_tokens,
             temperature=0.3,
@@ -55,15 +57,13 @@ def _call_gemini(prompt: str, max_tokens: int = 600) -> Optional[str]:
 
         api_key = os.getenv("GEMINI_API_KEY", "")
 
-        print("Gemini key exists:", bool(api_key))
-
         if not api_key:
             logger.error("Gemini API key missing")
             return None
 
         genai.configure(api_key=api_key)
 
-        model = genai.GenerativeModel("gemini-2.0-flash")
+        model = genai.GenerativeModel(GEMINI_MODEL)
 
         response = model.generate_content(
             prompt,

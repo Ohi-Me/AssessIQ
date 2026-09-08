@@ -40,8 +40,8 @@ Final Response
 | Embeddings     | all-MiniLM-L6-v2              |
 | Vector Search  | FAISS                         |
 | Keyword Search | BM25                          |
-| LLM            | Groq `llama-3.3-70b-versatile`|
-| Fallback LLM   | Gemini 2.0 Flash              |
+| LLM            | Groq `openai/gpt-oss-120b`    |
+| Fallback LLM   | Gemini 2.5 Flash              |
 
 ---
 

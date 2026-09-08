@@ -4,8 +4,8 @@ const STACK = [
   ["Vector search", "FAISS"],
   ["Keyword search", "BM25 (rank-bm25)"],
   ["Fusion", "Reciprocal Rank Fusion"],
-  ["LLM", "Groq · llama-3.3-70b"],
-  ["Fallback", "Gemini 2.0 Flash"],
+  ["LLM", "Groq · gpt-oss-120b"],
+  ["Fallback", "Gemini 2.5 Flash"],
   ["Typical latency", "2–5s"],
   ["Hard timeout", "25s"],
 ];

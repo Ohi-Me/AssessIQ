@@ -14,7 +14,7 @@ const STAGES = [
   {
     n: "03",
     title: "LLM generation",
-    body: "Groq's Llama 3.3 70B writes the reply, grounded strictly in the retrieved entries. Gemini 2.0 Flash covers the fallback path.",
+    body: "Groq's gpt-oss-120b writes the reply, grounded strictly in the retrieved entries. Gemini 2.5 Flash covers the fallback path.",
   },
   {
     n: "04",
