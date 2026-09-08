@@ -4,7 +4,7 @@ This is the last layer before returning to client.
 """
 
 import re
-from typing import List, Dict, Tuple
+from typing import List, Dict, Optional, Tuple
 from loguru import logger
 
 from app.catalog_loader import get_catalog_urls, get_catalog
@@ -126,10 +126,12 @@ def extract_recommendations_from_llm_reply(
             scored.append((doc, 2))
             continue
 
-        # Partial word match (key words of the name)
+        # Partial fallback: every significant word must appear. Half was too
+        # loose — a reply merely asking "Java, Python or C#?" matched "Core
+        # Java" on the word "java" alone and turned a clarifying question into
+        # a shortlist.
         words = [w for w in name_lower.split() if len(w) > 3]
-        matches = sum(1 for w in words if w in reply_lower)
-        if matches >= max(1, len(words) // 2):
+        if words and all(w in reply_lower for w in words):
             scored.append((doc, 1))
 
     # Sort by score desc, then by original order
@@ -145,6 +147,18 @@ def extract_recommendations_from_llm_reply(
         "Global Skills Assessment (GSA)": "Provides broad evaluation of workplace and professional skills.",
     }
 
+    def _reason_for(doc: Dict) -> Optional[str]:
+        """Hand-written reason where we have one, else the catalog's own first
+        sentence — better than shipping a recommendation with a blank reason."""
+        mapped = reason_map.get(doc.get("name", ""))
+        if mapped:
+            return mapped
+        desc = (doc.get("description") or "").strip()
+        if not desc:
+            return None
+        first = desc.split(". ")[0].strip().rstrip(".")
+        return f"{first}." if first else None
+
     for doc, match_score in scored:
         name = doc.get("name", "")
         if name in seen_names:
@@ -154,7 +168,7 @@ def extract_recommendations_from_llm_reply(
             "name": name,
             "url": doc.get("url", ""),
             "test_type": doc.get("test_type", "A"),
-            "reason": reason_map.get(name),
+            "reason": _reason_for(doc),
         }
         # Attach relevance score from retriever if available
         if doc.get("_score") is not None:
@@ -163,21 +177,12 @@ def extract_recommendations_from_llm_reply(
         if len(recommendations) >= 10:
             break
 
-    # If nothing matched from reply, fall back to top retrieved docs
-    if not recommendations and retrieved_docs:
-        logger.warning("No recommendations extracted from reply — using top retrieved docs")
-        for doc in retrieved_docs[:5]:
-            name = doc.get("name", "")
-            if name not in seen_names:
-                seen_names.add(name)
-                rec = {
-                    "name": name,
-                    "url": doc.get("url", ""),
-                    "test_type": doc.get("test_type", "A"),
-                    "reason": reason_map.get(name),
-                }
-                if doc.get("_score") is not None:
-                    rec["score"] = doc["_score"]
-                recommendations.append(rec)
+    # Deliberately no fallback to "just show the top retrieved docs". When the
+    # agent asks a clarifying question it names no assessment, and attaching a
+    # shortlist anyway produced replies that asked for more detail while
+    # displaying recommendations underneath. It also broke the guarantee that
+    # nothing is recommended unless the agent actually recommended it.
+    if not recommendations:
+        logger.info("Reply named no assessment — returning no recommendations.")
 
     return recommendations
