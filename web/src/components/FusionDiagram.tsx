@@ -3,22 +3,22 @@
 import { useReveal } from "@/lib/useReveal";
 
 const LEXICAL = [
-  "Python (New)",
-  "Data Analysis",
-  "SQL (New)",
-  "Microsoft Excel (New)",
+  "Python Programming",
+  "Data Analysis Test",
+  "SQL and Database",
+  "Spreadsheet Skills",
 ];
 const SEMANTIC = [
-  "Graduate 8.0",
-  "Technology Professional",
-  "Verify Numerical",
-  "Python (New)",
+  "Graduate Aptitude",
+  "Technology Aptitude",
+  "Numerical Reasoning",
+  "Python Programming",
 ];
 const FUSED = [
-  "Python (New)",
-  "Data Analysis",
-  "Graduate 8.0",
-  "Technology Professional",
+  "Python Programming",
+  "Data Analysis Test",
+  "Graduate Aptitude",
+  "Technology Aptitude",
 ];
 
 const CONNECTORS: { col: "lex" | "sem"; rank: number; toRank: number }[] = [

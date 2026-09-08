@@ -124,21 +124,19 @@ Swagger docs: `http://127.0.0.1:8000/docs`
 
 ```json
 {
-  "reply": "For a mid-level Java developer who works with stakeholders, Java 8 (New) evaluates OOP, collections, and backend Java fundamentals.",
+  "reply": "For an SDE intern, the Java Programming Test covers OOP and data structures, while the Debugging Simulation tests real debugging under time pressure.",
   "recommendations": [
     {
-      "name": "Java 8 (New)",
-      "url": "https://www.shl.com/solutions/products/product-catalog/view/java-8-new/",
+      "name": "Java Programming Test",
       "test_type": "K",
       "score": 1.0,
-      "reason": "Assesses modern Java 8 concepts relevant for backend development."
+      "reason": "Assesses object-oriented design, collections and data structures."
     },
     {
-      "name": "OPQ32r",
-      "url": "https://www.shl.com/solutions/products/product-catalog/view/opq32r/",
-      "test_type": "P",
+      "name": "Debugging Simulation",
+      "test_type": "S",
       "score": 0.896,
-      "reason": "Evaluates workplace personality traits, teamwork, and communication style."
+      "reason": "Candidates diagnose and repair failing code under time pressure."
     }
   ],
   "end_of_conversation": true
@@ -186,11 +184,21 @@ railway up
 
 ## Data
 
-The catalog is built from publicly listed SHL assessment products (see
-`scripts/scrape_catalog.py`), which is why recommendation URLs resolve to
-`shl.com`. The retrieval and agent layers are catalog-agnostic — swapping in a
-different assessment catalog only requires regenerating `data/catalog.json` and
-rebuilding the indexes.
+The catalog is vendor-neutral: 31 entries describing standard categories of
+hiring assessment — programming and knowledge tests, coding simulations,
+aptitude batteries, personality questionnaires and situational judgement —
+rather than any single provider's branded products.
+
+It is defined in `scripts/build_catalog.py` and compiled to
+`data/catalog.json`:
+
+```bash
+python scripts/build_catalog.py
+```
+
+The retrieval and agent layers are catalog-agnostic. To point the system at a
+different catalog, replace the `ASSESSMENTS` list, regenerate, and delete
+`data/*.pkl` so the indexes rebuild on next start.
 
 ## Author
 

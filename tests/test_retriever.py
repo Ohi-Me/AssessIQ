@@ -102,15 +102,14 @@ def test_recall_at_10_java_stakeholder():
     assert recall >= 0.5, f"Recall too low: {recall:.2f}. Found: {found}"
 
 
-def test_no_hallucinated_urls():
-    """All retrieved items must have real SHL URLs."""
-    from app.catalog_loader import get_catalog_urls
-    catalog_urls = get_catalog_urls()
+def test_no_hallucinated_assessments():
+    """Every retrieved item must come from the catalog."""
+    from app.catalog_loader import get_catalog
+    catalog_names = {a["name"] for a in get_catalog()}
 
     results = retrieve("software developer assessment", top_k=10)
     for item in results:
-        assert item["url"] in catalog_urls, f"Non-catalog URL: {item['url']}"
-        assert "shl.com" in item["url"]
+        assert item["name"] in catalog_names, f"Not in catalog: {item['name']}"
 
 
 if __name__ == "__main__":

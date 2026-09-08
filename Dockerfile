@@ -18,8 +18,7 @@ RUN python -c "import nltk; nltk.download('punkt', quiet=True); nltk.download('s
 # Copy source
 COPY . .
 
-# Generate catalog if not present
-RUN python scripts/scrape_catalog.py --use-fallback || true
+# Catalog is committed in data/catalog.json; regenerate with scripts/build_catalog.py
 
 # Expose port
 EXPOSE 8000

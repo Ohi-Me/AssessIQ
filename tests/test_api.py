@@ -1,5 +1,5 @@
 """
-Test suite for SHL Recommender API.
+Test suite for the AssessIQ API.
 Run: pytest tests/test_api.py -v
 """
 
@@ -14,9 +14,12 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import subprocess
 catalog_path = Path(__file__).parent.parent / "data" / "catalog.json"
 if not catalog_path.exists():
-    subprocess.run([sys.executable, "scripts/scrape_catalog.py", "--use-fallback"])
+    subprocess.run([sys.executable, "scripts/build_catalog.py"])
 
 from app.main import app
+from app.catalog_loader import get_catalog
+
+CATALOG_NAMES = {a["name"] for a in get_catalog()}
 
 client = TestClient(app)
 
@@ -76,7 +79,7 @@ def test_recommendation_fields():
         assert "name" in rec
         assert "url" in rec
         assert "test_type" in rec
-        assert "shl.com" in rec["url"], f"Non-SHL URL found: {rec['url']}"
+        assert rec["name"] in CATALOG_NAMES, f"Not in catalog: {rec['name']}"
 
 
 # ──────────────────────────────────────────────────────────────────
@@ -110,9 +113,9 @@ def test_off_topic_refusal():
     })
     data = r.json()
     assert data["recommendations"] == []
-    # Reply should mention staying on topic or SHL assessments
+    # Reply should mention staying on topic or assessments
     reply_lower = data["reply"].lower()
-    assert any(kw in reply_lower for kw in ["assessment", "shl", "help", "hiring"])
+    assert any(kw in reply_lower for kw in ["assessment", "help", "hiring"])
 
 
 def test_off_topic_salary():
@@ -173,7 +176,7 @@ def test_full_conversation_recommendation():
     data = r.json()
     assert len(data["recommendations"]) >= 1, "Should recommend after sufficient context"
     for rec in data["recommendations"]:
-        assert "shl.com" in rec["url"]
+        assert rec["name"] in CATALOG_NAMES
 
 
 def test_refinement():
@@ -207,7 +210,7 @@ def test_jd_triggers_recommendation():
 
 
 def test_catalog_urls_only():
-    """All recommendation URLs must be from SHL catalog."""
+    """Every recommendation must come from the catalog."""
     r = client.post("/chat", json={
         "messages": [
             {"role": "user", "content": "I need assessments for a senior software engineer"},
@@ -217,7 +220,7 @@ def test_catalog_urls_only():
     })
     data = r.json()
     for rec in data["recommendations"]:
-        assert "shl.com" in rec["url"], f"Invalid URL: {rec['url']}"
+        assert rec["name"] in CATALOG_NAMES, f"Not in catalog: {rec['name']}"
 
 
 # ──────────────────────────────────────────────────────────────────

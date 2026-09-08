@@ -1,8 +1,8 @@
 const SPECS = [
-  { figure: "37", label: "assessments indexed" },
-  { figure: "8", label: "test types covered" },
+  { figure: "31", label: "assessments indexed" },
+  { figure: "7", label: "test types covered" },
   { figure: "2", label: "retrievers fused" },
-  { figure: "0", label: "invented URLs" },
+  { figure: "0", label: "invented assessments" },
 ];
 
 export default function SpecBand() {

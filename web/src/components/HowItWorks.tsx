@@ -19,7 +19,7 @@ const STAGES = [
   {
     n: "04",
     title: "Validation",
-    body: "Every URL is checked against the real catalog, unverifiable entries are dropped, and the list is capped at ten.",
+    body: "Every recommendation is checked against the catalog by name. Anything the agent didn't actually retrieve is dropped, and the list is capped at ten.",
   },
 ];
 

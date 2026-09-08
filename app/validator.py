@@ -24,7 +24,7 @@ def validate_recommendations(recommendations: List[Dict]) -> Tuple[List[Dict], L
         errors.append(f"Too many recommendations: {len(recommendations)} > 10. Truncating.")
         recommendations = recommendations[:10]
 
-    catalog_urls = get_catalog_urls()
+    catalog_names = {item.get("name", "").strip().lower() for item in get_catalog()}
     valid = []
 
     for i, rec in enumerate(recommendations):
@@ -34,27 +34,19 @@ def validate_recommendations(recommendations: List[Dict]) -> Tuple[List[Dict], L
 
         # Required fields
         name = rec.get("name", "").strip()
-        url = rec.get("url", "").strip()
+        url = (rec.get("url") or "").strip()
         test_type = rec.get("test_type", "").strip()
 
         if not name:
             errors.append(f"Item {i}: missing name.")
             continue
 
-        if not url:
-            errors.append(f"Item {i} ({name}): missing URL.")
+        # The assessment must exist in the catalog. This is the guarantee that
+        # nothing invented reaches the client — it replaces the old check that
+        # the URL belonged to one specific vendor's domain.
+        if name.lower() not in catalog_names:
+            errors.append(f"Item {i} ({name}): not in catalog — skipping.")
             continue
-
-        # URL must be from the catalog
-        if url not in catalog_urls:
-            # Try to find correct URL from catalog
-            correct_url = _find_url_by_name(name)
-            if correct_url:
-                logger.warning(f"Corrected URL for '{name}': {url} → {correct_url}")
-                url = correct_url
-            else:
-                errors.append(f"Item {i} ({name}): URL not in catalog — skipping.")
-                continue
 
         if not test_type:
             # Try to infer from catalog

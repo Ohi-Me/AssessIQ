@@ -25,17 +25,10 @@ class ChatRequest(BaseModel):
 
 class Recommendation(BaseModel):
     name: str
-    url: str
+    url: str = ""          # optional external reference; empty for catalog-only entries
     test_type: str         # e.g. "A", "K", "P", "S"
     reason: Optional[str] = None   # why this assessment fits (populated by agent)
     score: Optional[float] = None  # normalized relevance score 0.0–1.0 (from retriever)
-
-    @field_validator("url")
-    @classmethod
-    def url_must_be_shl(cls, v):
-        if v and "shl.com" not in v:
-            raise ValueError(f"URL must be from shl.com: {v}")
-        return v
 
 
 class ChatResponse(BaseModel):

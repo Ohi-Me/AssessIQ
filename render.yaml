@@ -2,7 +2,7 @@ services:
   - type: web
     name: assessiq
     runtime: python
-    buildCommand: pip install -r requirements.txt && python scripts/scrape_catalog.py --use-fallback
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1
     healthCheckPath: /health
     envVars:

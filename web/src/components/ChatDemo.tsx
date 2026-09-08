@@ -166,14 +166,6 @@ export default function ChatDemo() {
                           </span>
                         </div>
                         <p className="mt-1 text-xs text-muted">{r.reason}</p>
-                        <a
-                          href={r.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-1 inline-block text-xs underline decoration-border hover:decoration-ink"
-                        >
-                          View assessment ↗
-                        </a>
                       </div>
                       <span className="shrink-0 font-mono text-xs text-muted">
                         {r.score.toFixed(2)}

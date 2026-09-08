@@ -18,15 +18,15 @@ CATALOG_PATH = Path(__file__).parent.parent / "data" / "catalog.json"
 
 
 def _generate_catalog():
-    """Run scraper to generate catalog if missing."""
-    logger.info("catalog.json not found — generating from fallback catalog...")
-    script = Path(__file__).parent.parent / "scripts" / "scrape_catalog.py"
+    """Rebuild catalog.json from its definition if the file is missing."""
+    logger.info("catalog.json not found — building from scripts/build_catalog.py...")
+    script = Path(__file__).parent.parent / "scripts" / "build_catalog.py"
     result = subprocess.run(
-        [sys.executable, str(script), "--use-fallback"],
+        [sys.executable, str(script)],
         capture_output=True, text=True
     )
     if result.returncode != 0:
-        logger.error(f"Scraper failed: {result.stderr}")
+        logger.error(f"Catalog build failed: {result.stderr}")
     else:
         logger.info("Catalog generated successfully.")
 
@@ -52,8 +52,11 @@ def load_catalog(path: Path = CATALOG_PATH) -> List[Dict]:
     # Validate and filter
     valid = []
     for item in data:
-        if not item.get("name") or not item.get("url"):
+        # Only the name is required. Entries need not carry an external URL —
+        # catalog membership, not a vendor link, is what makes one valid.
+        if not item.get("name"):
             continue
+        item.setdefault("url", "")
         # Ensure required fields
         item.setdefault("test_type", "A")
         item.setdefault("description", "")

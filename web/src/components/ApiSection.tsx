@@ -7,14 +7,13 @@ const REQUEST = `curl -X POST https://assessiq1.onrender.com/chat \\
   }'`;
 
 const RESPONSE = `{
-  "reply": "For an SDE intern, Core Java covers OOP and data structures, while Automata — Fix the Code tests real debugging under time pressure.",
+  "reply": "For an SDE intern, the Java Programming Test covers OOP and data structures, while the Debugging Simulation tests real debugging under time pressure.",
   "recommendations": [
     {
-      "name": "Core Java",
-      "url": "https://.../product-catalog/view/core-java/",
+      "name": "Java Programming Test",
       "test_type": "K",
       "score": 1.0,
-      "reason": "Evaluates Java fundamentals, OOP, collections, and data structures."
+      "reason": "Assesses object-oriented design, collections and data structures."
     }
   ],
   "end_of_conversation": true
