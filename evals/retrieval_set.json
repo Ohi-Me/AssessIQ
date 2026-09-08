@@ -1,0 +1,154 @@
+{
+  "description": "Labelled retrieval evaluation set. Each query lists the catalog assessments a hiring manager would consider genuinely relevant. Relevance is binary and hand-labelled; queries were written to cover the role families the catalog serves, including the ones that previously returned bad results.",
+  "queries": [
+    {
+      "query": "Hiring an SDE intern to test coding and problem solving",
+      "relevant": [
+        "Debugging Simulation",
+        "Algorithmic Coding Challenge",
+        "Java Programming Test",
+        "Python Programming Test",
+        "Technology Aptitude Test"
+      ]
+    },
+    {
+      "query": "Screening AI/ML interns for Python and data skills",
+      "relevant": [
+        "Machine Learning Foundations Test",
+        "Python Programming Test",
+        "Data Analysis Test"
+      ]
+    },
+    {
+      "query": "data engineer intern",
+      "relevant": [
+        "SQL and Database Test",
+        "Data Pipeline Exercise",
+        "Python Programming Test"
+      ]
+    },
+    {
+      "query": "Campus hiring for graduate engineers, mix of aptitude and coding",
+      "relevant": [
+        "Graduate Aptitude Battery",
+        "Technology Aptitude Test",
+        "Algorithmic Coding Challenge",
+        "Logical Reasoning Test"
+      ]
+    },
+    {
+      "query": "backend developer with SQL and API experience",
+      "relevant": [
+        "SQL and Database Test",
+        "Java Programming Test",
+        "Python Programming Test"
+      ]
+    },
+    {
+      "query": "frontend developer, React and JavaScript",
+      "relevant": [
+        "JavaScript and Web Development Test"
+      ]
+    },
+    {
+      "query": "DevOps engineer, cloud and CI/CD pipelines",
+      "relevant": [
+        "Cloud and DevOps Fundamentals Test"
+      ]
+    },
+    {
+      "query": "Personality assessment for a sales manager",
+      "relevant": [
+        "Work Personality Questionnaire",
+        "Leadership Potential Report",
+        "Sales Aptitude Assessment",
+        "Motivation and Drivers Questionnaire"
+      ]
+    },
+    {
+      "query": "Entry level customer support hire",
+      "relevant": [
+        "Situational Judgement: Customer Service",
+        "Customer Support Simulation",
+        "Work Personality Questionnaire"
+      ]
+    },
+    {
+      "query": "Promoting someone into management, leadership potential",
+      "relevant": [
+        "Leadership Potential Report",
+        "Situational Judgement: Management",
+        "360 Development Review"
+      ]
+    },
+    {
+      "query": "Graduate scheme, verbal and numerical reasoning",
+      "relevant": [
+        "Verbal Reasoning Test",
+        "Numerical Reasoning Test",
+        "Graduate Aptitude Battery"
+      ]
+    },
+    {
+      "query": "Remote first team, need self management and written communication",
+      "relevant": [
+        "Remote Work Readiness Questionnaire",
+        "Work Personality Questionnaire"
+      ]
+    },
+    {
+      "query": "Data analyst using spreadsheets and reporting",
+      "relevant": [
+        "Spreadsheet Skills Test",
+        "Data Analysis Test",
+        "Numerical Reasoning Test"
+      ]
+    },
+    {
+      "query": "C# .NET enterprise developer",
+      "relevant": [
+        "C# and .NET Test"
+      ]
+    },
+    {
+      "query": "Assess teamwork and collaboration style",
+      "relevant": [
+        "Team Collaboration Styles Questionnaire",
+        "Work Personality Questionnaire"
+      ]
+    },
+    {
+      "query": "Warehouse operative, safety and reliability",
+      "relevant": [
+        "Dependability and Safety Inventory"
+      ]
+    },
+    {
+      "query": "International team, cross cultural working",
+      "relevant": [
+        "Global Competency Assessment"
+      ]
+    },
+    {
+      "query": "Machine learning engineer, model evaluation and Python",
+      "relevant": [
+        "Machine Learning Foundations Test",
+        "Python Programming Test"
+      ]
+    },
+    {
+      "query": "Junior developer, debugging and code comprehension",
+      "relevant": [
+        "Debugging Simulation",
+        "Algorithmic Coding Challenge"
+      ]
+    },
+    {
+      "query": "Office administrator, reading comprehension",
+      "relevant": [
+        "Reading Comprehension Test",
+        "Verbal Reasoning Test"
+      ]
+    }
+  ]
+}

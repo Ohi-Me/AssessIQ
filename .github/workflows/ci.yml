@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Fast gate. Regression tests carry no model and no API keys, so they run in
+  # seconds and cover the bugs that previously reached production.
+  tests:
+    name: Regression tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install test dependencies
+        run: pip install pytest numpy loguru pydantic python-dotenv
+
+      - name: Run regression tests
+        run: python -m pytest tests/test_regressions.py -v
+
+  # Retrieval quality. Deterministic, so a drop in ranking fails the build
+  # rather than waiting for someone to notice a bad result by eye.
+  evaluate:
+    name: Retrieval evaluation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        # CPU-only torch: the default wheel pulls ~2.5GB of CUDA libraries that
+        # are useless on a CI runner.
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install sentence-transformers faiss-cpu rank-bm25 numpy loguru \
+            pydantic python-dotenv nltk
+
+      - name: Score retrieval against the labelled set
+        run: python scripts/evaluate.py --min-recall-at-5 0.75
+
+  frontend:
+    name: Frontend build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build

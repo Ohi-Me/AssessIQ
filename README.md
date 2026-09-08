@@ -1,8 +1,10 @@
 # AssessIQ
 
+[![CI](https://github.com/Ohi-Me/AssessIQ/actions/workflows/ci.yml/badge.svg)](https://github.com/Ohi-Me/AssessIQ/actions/workflows/ci.yml)
+
 A conversational AI agent that recommends the right talent assessment for a role from a plain-English hiring need — grounded in a real catalog of published assessments, so it can only suggest tests that actually exist.
 
-Ask it something like *"Hiring a Java developer who works with stakeholders"* and it clarifies what it's missing, then returns ranked, cited assessment recommendations with a reason for each.
+Ask it something like *"Hiring an SDE intern to test coding and problem solving"* and it clarifies what it's missing, then returns ranked assessment recommendations with a reason for each.
 
 **Why:** Hiring managers picking an assessment usually have to browse a large product catalog by hand. This turns that into a short conversation — the agent asks for the one missing signal it needs (role, seniority, skill focus) instead of dumping a list, then grounds every recommendation in retrieved catalog entries so it never invents an assessment.
 
@@ -151,6 +153,40 @@ Swagger docs: `http://127.0.0.1:8000/docs`
 | `end_of_conversation`  | `true` when the recommendation flow is complete              |
 
 ---
+
+## Evaluation
+
+Retrieval is scored against a hand-labelled set of 20 queries in
+`evals/retrieval_set.json`, covering the role families the catalog serves.
+Relevance is binary; a label naming an assessment that no longer exists fails
+the run rather than silently deflating the score.
+
+```bash
+python scripts/evaluate.py
+```
+
+| metric | value |
+| ------------ | ----- |
+| Recall@5     | 0.87  |
+| Recall@10    | 0.99  |
+| MRR          | 0.89  |
+| nDCG@10      | 0.88  |
+| Precision@5  | 0.41  |
+
+Precision@5 is low by construction: most queries have two or three relevant
+assessments, so five slots cannot all be correct. Recall and MRR are the
+metrics that matter here — nearly everything relevant reaches the top ten, and
+the first hit is usually first or second.
+
+Only retrieval is evaluated. Generation is excluded on purpose: it is
+non-deterministic and needs API keys, which would make the numbers
+unrepeatable and stop this running in CI.
+
+CI enforces a floor:
+
+```bash
+python scripts/evaluate.py --min-recall-at-5 0.75
+```
 
 ## Performance
 

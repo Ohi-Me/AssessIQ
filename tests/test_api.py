@@ -16,8 +16,18 @@ catalog_path = Path(__file__).parent.parent / "data" / "catalog.json"
 if not catalog_path.exists():
     subprocess.run([sys.executable, "scripts/build_catalog.py"])
 
-from app.main import app
-from app.catalog_loader import get_catalog
+import os
+
+# These are integration tests: they boot the app, load the embedding model and
+# call a live LLM. Without a key the agent returns its fallback text and the
+# assertions below are meaningless, so skip rather than fail misleadingly.
+pytestmark = pytest.mark.skipif(
+    not os.getenv("GROQ_API_KEY"),
+    reason="integration tests need GROQ_API_KEY",
+)
+
+from app.main import app                    # noqa: E402
+from app.catalog_loader import get_catalog  # noqa: E402
 
 CATALOG_NAMES = {a["name"] for a in get_catalog()}
 
