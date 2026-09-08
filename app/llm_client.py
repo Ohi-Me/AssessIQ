@@ -5,6 +5,7 @@ Both free tier. Groq is faster (< 3s), Gemini is fallback.
 
 import os
 import asyncio
+import time
 from typing import Optional
 
 from dotenv import load_dotenv
@@ -87,8 +88,14 @@ def _call_gemini(prompt: str, max_tokens: int = 600) -> Optional[str]:
 def call_llm(prompt: str, max_tokens: int = 600) -> str:
     """Call LLM with Groq primary, Gemini fallback."""
 
-    # Try Groq first
+    # Try Groq first. One retry, because the free tier rate-limits under bursts
+    # and a single 429 was enough to show the generic error text to a visitor.
     result = _call_groq(prompt, max_tokens)
+
+    if not result:
+        time.sleep(1.5)
+        logger.info("Retrying Groq once...")
+        result = _call_groq(prompt, max_tokens)
 
     if result:
         return result
