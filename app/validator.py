@@ -97,6 +97,13 @@ def _get_test_type_by_name(name: str) -> str | None:
     return None
 
 
+def _normalize(text: str) -> str:
+    """Lowercase, unify dash variants and collapse whitespace, so a name still
+    matches when the model writes 'Automata - Fix the Code'."""
+    text = text.lower().replace("—", "-").replace("–", "-")
+    return re.sub(r"\s+", " ", text)
+
+
 def extract_recommendations_from_llm_reply(
     reply: str,
     retrieved_docs: List[Dict],
@@ -113,29 +120,31 @@ def extract_recommendations_from_llm_reply(
     recommendations = []
     seen_names = set()
 
-    # Score each retrieved doc by how much its name appears in the reply
-    reply_lower = reply.lower()
+    # Whole-name matching only. Word-level matching cannot work on this catalog:
+    # many names end in "(New)", so "C# (New)" reduces to the single token
+    # "(new)" and matched any reply that mentioned Python (New) — which is how a
+    # C# test ended up recommended for a data engineer. "Java 8 (New)" likewise
+    # matched on "java" borrowed from "Core Java". The prompt tells the model to
+    # use exact names, and it does.
+    reply_norm = _normalize(reply)
 
-    scored = []
+    matched = []
     for doc in retrieved_docs:
         name = doc.get("name", "")
-        name_lower = name.lower()
+        if name and _normalize(name) in reply_norm:
+            matched.append(doc)
 
-        # Exact name match
-        if name_lower in reply_lower:
-            scored.append((doc, 2))
+    # Drop names wholly contained in another match, so "Numerical Reasoning"
+    # doesn't ride along when the model named "Verify Numerical Reasoning".
+    names_norm = [_normalize(d.get("name", "")) for d in matched]
+    scored = []
+    for doc, this_name in zip(matched, names_norm):
+        if any(this_name != other and this_name in other for other in names_norm):
             continue
+        scored.append((doc, 2))
 
-        # Partial fallback: every significant word must appear. Half was too
-        # loose — a reply merely asking "Java, Python or C#?" matched "Core
-        # Java" on the word "java" alone and turned a clarifying question into
-        # a shortlist.
-        words = [w for w in name_lower.split() if len(w) > 3]
-        if words and all(w in reply_lower for w in words):
-            scored.append((doc, 1))
-
-    # Sort by score desc, then by original order
-    scored.sort(key=lambda x: -x[1])
+    # Present in relevance order, so displayed scores read as a ranking.
+    scored.sort(key=lambda x: -(x[0].get("_score") or 0))
 
     reason_map = {
         "Core Java": "Evaluates Java fundamentals, OOP, collections, and backend programming skills.",
