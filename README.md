@@ -197,8 +197,18 @@ python scripts/build_catalog.py
 ```
 
 The retrieval and agent layers are catalog-agnostic. To point the system at a
-different catalog, replace the `ASSESSMENTS` list, regenerate, and delete
-`data/*.pkl` so the indexes rebuild on next start.
+different catalog, replace the `ASSESSMENTS` list, then regenerate both the
+catalog and the search indexes:
+
+```bash
+python scripts/build_catalog.py
+python -c "from app.catalog_loader import load_catalog; from app.retriever import build_indexes; build_indexes(load_catalog())"
+```
+
+Commit the resulting `data/*.pkl` files. They are checked in deliberately:
+building an index holds the embedding model and the encode batch in memory at
+the same time, which exceeds a 512Mi instance, whereas loading a prebuilt one
+does not.
 
 ## Author
 
