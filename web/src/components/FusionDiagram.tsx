@@ -3,28 +3,28 @@
 import { useReveal } from "@/lib/useReveal";
 
 const LEXICAL = [
-  "Automata — Fix the Code",
-  "Core Java",
-  "Automata Pro",
+  "Python (New)",
+  "Data Analysis",
   "SQL (New)",
+  "Microsoft Excel (New)",
 ];
 const SEMANTIC = [
   "Graduate 8.0",
-  "Verify G+",
   "Technology Professional",
-  "Core Java",
+  "Verify Numerical",
+  "Python (New)",
 ];
 const FUSED = [
-  "Core Java",
-  "Automata — Fix the Code",
+  "Python (New)",
+  "Data Analysis",
   "Graduate 8.0",
-  "Verify G+",
+  "Technology Professional",
 ];
 
 const CONNECTORS: { col: "lex" | "sem"; rank: number; toRank: number }[] = [
-  { col: "lex", rank: 1, toRank: 0 },
+  { col: "lex", rank: 0, toRank: 0 },
   { col: "sem", rank: 3, toRank: 0 },
-  { col: "lex", rank: 0, toRank: 1 },
+  { col: "lex", rank: 1, toRank: 1 },
   { col: "sem", rank: 0, toRank: 2 },
   { col: "sem", rank: 1, toRank: 3 },
 ];
@@ -44,7 +44,7 @@ export default function FusionDiagram() {
       <p className="mb-6 text-sm text-muted">
         For the request{" "}
         <span className="text-ink">
-          “Hiring an SDE intern — coding and problem solving”
+          “Screening AI/ML interns for Python and data skills”
         </span>
         , each retriever hears something different:
       </p>
@@ -54,7 +54,7 @@ export default function FusionDiagram() {
           viewBox="0 0 920 330"
           className="mx-auto min-w-[720px]"
           role="img"
-          aria-label="For the query 'Hiring an SDE intern for coding and problem solving', BM25 keyword search returns coding tests while FAISS semantic search returns early-career aptitude assessments. Reciprocal Rank Fusion combines them into one shortlist covering both coding ability and graduate-level aptitude."
+          aria-label="For the query 'Screening AI/ML interns for Python and data skills', BM25 keyword search returns Python and data tests while FAISS semantic search returns early-career screening assessments. Reciprocal Rank Fusion combines them into one shortlist covering both the technical skills and the intern-level screening."
         >
           <text
             x={LEX.mid}

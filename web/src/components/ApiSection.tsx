@@ -11,7 +11,7 @@ const RESPONSE = `{
   "recommendations": [
     {
       "name": "Core Java",
-      "url": "https://www.shl.com/.../core-java/",
+      "url": "https://.../product-catalog/view/core-java/",
       "test_type": "K",
       "score": 1.0,
       "reason": "Evaluates Java fundamentals, OOP, collections, and data structures."

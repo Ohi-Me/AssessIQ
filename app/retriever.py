@@ -403,6 +403,62 @@ def _apply_metadata_filters(
     return sorted(filtered, key=lambda x: x[1], reverse=True)
 
 
+def _cover_requested_types(
+    ranked: List[Tuple[int, float]],
+    requested_types: List,
+    top_k: int,
+) -> List[Tuple[int, float]]:
+    """
+    When more than one test type is asked for ("aptitude and coding"), make sure
+    the shortlist actually covers them.
+
+    Without this one strong cluster takes every slot: "campus hiring for graduate
+    engineers, mix of aptitude and coding" came back as five ability tests and no
+    coding test at all. Selection is round-robin across the requested types; the
+    result is re-sorted by score so the list still reads as a ranking.
+    """
+    flat: List[str] = []
+    for t in requested_types:
+        if isinstance(t, (list, tuple)):
+            flat.extend(t)
+        else:
+            flat.append(t)
+    wanted = list(dict.fromkeys(flat))
+
+    if len(wanted) < 2:
+        return ranked[:top_k]
+
+    buckets: Dict[str, List[Tuple[int, float]]] = {}
+    for idx, score in ranked:
+        t = _catalog_items[idx].get("test_type", "")
+        buckets.setdefault(t, []).append((idx, score))
+
+    present = [t for t in wanted if buckets.get(t)]
+    if len(present) < 2:
+        return ranked[:top_k]
+
+    picked: List[Tuple[int, float]] = []
+    taken = set()
+    i = 0
+    while len(picked) < top_k and any(buckets[t] for t in present):
+        bucket = buckets[present[i % len(present)]]
+        if bucket:
+            pair = bucket.pop(0)
+            picked.append(pair)
+            taken.add(pair[0])
+        i += 1
+
+    # Fill any remaining slots with the best of what's left.
+    for pair in ranked:
+        if len(picked) >= top_k:
+            break
+        if pair[0] not in taken:
+            picked.append(pair)
+            taken.add(pair[0])
+
+    return sorted(picked[:top_k], key=lambda x: x[1], reverse=True)
+
+
 # ──────────────────────────────────────────────────────────────────
 # Public API
 # ──────────────────────────────────────────────────────────────────
@@ -441,12 +497,13 @@ def retrieve(
     # Filter + boost by metadata
     filtered = _apply_metadata_filters(fused, constraints)
 
-    # Top-k — normalize scores to [0, 1] for confidence display
-    top = filtered[:top_k]
+    # Keep every requested test type represented, then take top-k
+    top = _cover_requested_types(filtered, constraints.get("test_types", []), top_k)
     if not top:
         return []
 
-    max_score = top[0][1] if top[0][1] > 0 else 1.0
+    # Normalize to [0, 1] for confidence display
+    max_score = max((s for _, s in top), default=0.0) or 1.0
     result = []
     for idx, score in top:
         if idx < len(_catalog_items):

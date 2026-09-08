@@ -55,11 +55,11 @@ export default function HowItWorks() {
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-2">
               Fig. 2 —{" "}
             </span>
-            Keyword search finds the coding tests but not the early-career
-            screeners; semantic search recognises this is campus hiring but
-            ranks the coding tests lower. Fusion returns a shortlist covering
-            both — and anything scoring on both sides, like Core Java, goes to
-            the top.
+            Keyword search locks onto &ldquo;Python&rdquo; and
+            &ldquo;data&rdquo; — and drags in Excel along the way; semantic
+            search understands this is intern screening but ranks the Python
+            test lower. Fusion covers both, and Python (New) — strong on each
+            side — goes to the top.
           </figcaption>
         </figure>
       </div>
