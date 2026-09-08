@@ -55,11 +55,11 @@ export default function HowItWorks() {
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-2">
               Fig. 2 —{" "}
             </span>
-            Keyword search finds the Java skills tests but misses
-            &ldquo;stakeholders&rdquo;; semantic search catches the
-            communication side but ranks Java lower. Fusion returns a shortlist
-            that covers both halves of the request — and anything scoring on
-            both sides, like Java 8, goes to the top.
+            Keyword search finds the coding tests but not the early-career
+            screeners; semantic search recognises this is campus hiring but
+            ranks the coding tests lower. Fusion returns a shortlist covering
+            both — and anything scoring on both sides, like Core Java, goes to
+            the top.
           </figcaption>
         </figure>
       </div>

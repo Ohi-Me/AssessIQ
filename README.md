@@ -1,6 +1,6 @@
 # AssessIQ
 
-A conversational AI agent that recommends the right talent assessment for a role from a plain-English hiring need — grounded in SHL's real, public assessment catalog.
+A conversational AI agent that recommends the right talent assessment for a role from a plain-English hiring need — grounded in a real catalog of published assessments, so it can only suggest tests that actually exist.
 
 Ask it something like *"Hiring a Java developer who works with stakeholders"* and it clarifies what it's missing, then returns ranked, cited assessment recommendations with a reason for each.
 
@@ -183,6 +183,14 @@ railway up
 **Render** — push to GitHub, connect the repo in Render, add env vars, deploy via `render.yaml`.
 
 ---
+
+## Data
+
+The catalog is built from publicly listed SHL assessment products (see
+`scripts/scrape_catalog.py`), which is why recommendation URLs resolve to
+`shl.com`. The retrieval and agent layers are catalog-agnostic — swapping in a
+different assessment catalog only requires regenerating `data/catalog.json` and
+rebuilding the indexes.
 
 ## Author
 

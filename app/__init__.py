@@ -1,1 +1,1 @@
-# SHL Assessment Recommender — App Package
+# AssessIQ — App Package

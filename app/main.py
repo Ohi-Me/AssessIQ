@@ -49,7 +49,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="AssessIQ",
-    description="Conversational agent that recommends talent assessments from SHL's product catalog",
+    description="Conversational agent that recommends talent assessments from a real product catalog",
     version="1.0.0",
     lifespan=lifespan,
 )

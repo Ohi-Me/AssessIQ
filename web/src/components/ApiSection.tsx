@@ -2,19 +2,19 @@ const REQUEST = `curl -X POST https://assessiq1.onrender.com/chat \\
   -H "Content-Type: application/json" \\
   -d '{
     "messages": [
-      { "role": "user", "content": "Hiring a Java developer who works with stakeholders" }
+      { "role": "user", "content": "Hiring an SDE intern to test coding and problem solving" }
     ]
   }'`;
 
 const RESPONSE = `{
-  "reply": "For a mid-level Java developer who works with stakeholders, Java 8 (New) evaluates OOP, collections, and backend Java fundamentals.",
+  "reply": "For an SDE intern, Core Java covers OOP and data structures, while Automata — Fix the Code tests real debugging under time pressure.",
   "recommendations": [
     {
-      "name": "Java 8 (New)",
-      "url": "https://www.shl.com/.../java-8-new/",
+      "name": "Core Java",
+      "url": "https://www.shl.com/.../core-java/",
       "test_type": "K",
       "score": 1.0,
-      "reason": "Assesses modern Java 8 concepts relevant for backend development."
+      "reason": "Evaluates Java fundamentals, OOP, collections, and data structures."
     }
   ],
   "end_of_conversation": true

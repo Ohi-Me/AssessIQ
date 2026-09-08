@@ -32,7 +32,7 @@ INJECTION_PATTERNS = [
     r"new (persona|personality|role|character)",
     r"(reveal|show|print|output|expose) (your )?(system |initial |full )?(prompt|instructions?)",
     r"from now on (you are|act|respond|behave)",
-    r"(stop|don't) being (an? )?(AI|assistant|chatbot|SHL)",
+    r"(stop|don't) being (an? )?(AI|assistant|chatbot)",
     r"hypothetically (if you were|speaking|say|assume)",
     r"what would you say if (you had no|there were no) (restrictions?|rules?|guidelines?)",
 ]
@@ -88,10 +88,14 @@ REFINEMENT_PATTERNS = [
 
 # What makes a query have "enough context" to recommend
 HAS_ROLE_PATTERNS = [
-    r"\b(developer|engineer|manager|analyst|designer|sales|marketing|hr|recruiter|"
-    r"accountant|finance|operations|admin|support|executive|director|lead|architect|"
-    r"scientist|researcher|consultant|specialist|coordinator|associate|officer)\b",
-    r"\b(hiring|recruit(ing)?|assess(ing)?|evaluat(ing)?)\b.{0,30}\b(for|a|an)\b",
+    # Trailing "s?" so plurals match; "engineering" needs its own entry because
+    # \bengineer\b does not match it.
+    r"\b(developer|engineer|engineering|programmer|coder|manager|analyst|designer|"
+    r"sales|marketing|hr|recruiter|accountant|finance|operations|admin|support|"
+    r"executive|director|lead|architect|scientist|researcher|consultant|specialist|"
+    r"coordinator|associate|officer|technician|tester)s?\b",
+    r"\b(sde|swe|sdet|devops|qa)\b",
+    r"\b(hiring|recruit(ing)?|screen(ing)?|assess(ing)?|evaluat(ing)?)\b.{0,30}\b(for|a|an)\b",
 ]
 
 HAS_SENIORITY_PATTERNS = [
@@ -102,7 +106,9 @@ HAS_SENIORITY_PATTERNS = [
 HAS_SKILL_PATTERNS = [
     r"\b(java|python|sql|javascript|c#|excel|data|analytics?|leadership|"
     r"sales|customer|communication|coding|programming|technical|cognitive|"
-    r"personality|verbal|numerical|reasoning|management|finance|banking)\b",
+    r"personality|verbal|numerical|reasoning|management|finance|banking|"
+    r"ml|ai|algorithms?|dsa|debugging|backend|frontend|software|"
+    r"problem[ -]solving|aptitude)\b",
 ]
 
 JOB_DESCRIPTION_PATTERNS = [
@@ -205,12 +211,12 @@ def classify(messages: List[Dict]) -> Dict:
     # HARD: always refuse — no role/skill bypass. Salary, legal, HR actions, etc.
     # must be refused even when the message contains role/skill keywords.
     if _matches_any(last_msg, HARD_OFF_TOPIC_PATTERNS):
-        return {**result, "intent": "off_topic", "reason": "Query is not about SHL assessments."}
+        return {**result, "intent": "off_topic", "reason": "Query is not about talent assessments."}
 
     # SOFT: refuse only if message has no assessment-related context.
     if _matches_any(last_msg, SOFT_OFF_TOPIC_PATTERNS):
         if not _matches_any(last_msg, HAS_ROLE_PATTERNS + HAS_SKILL_PATTERNS):
-            return {**result, "intent": "off_topic", "reason": "Query is not about SHL assessments."}
+            return {**result, "intent": "off_topic", "reason": "Query is not about talent assessments."}
 
     # 3. Comparison check
     if _matches_any(last_msg, COMPARISON_PATTERNS):

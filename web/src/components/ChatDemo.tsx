@@ -11,9 +11,9 @@ import {
 import GradeMark from "./GradeMark";
 
 const STARTERS = [
-  "Hiring a Java developer who works with stakeholders",
-  "Need a personality test for a sales manager role",
-  "Assessing entry-level graduates for analytical thinking",
+  "Hiring an SDE intern — need to test coding and problem solving",
+  "Screening AI/ML interns for Python and data skills",
+  "Campus hiring for graduate engineers, mix of aptitude and coding",
 ];
 
 const WAKE_UP_MS = 6000;
@@ -172,7 +172,7 @@ export default function ChatDemo() {
                           rel="noopener noreferrer"
                           className="mt-1 inline-block text-xs underline decoration-border hover:decoration-ink"
                         >
-                          View on SHL ↗
+                          View assessment ↗
                         </a>
                       </div>
                       <span className="shrink-0 font-mono text-xs text-muted">

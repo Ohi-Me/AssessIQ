@@ -42,9 +42,9 @@ export default function Hero() {
 
           <p className="mt-8 max-w-lg text-[15px] leading-relaxed text-muted">
             A conversational agent that turns a plain-English hiring need into
-            ranked, cited assessments from SHL&apos;s real catalog. It asks for
-            the one signal it&apos;s missing instead of dumping a list — and it
-            can only recommend what it actually retrieved.
+            ranked, cited assessments from a real catalog of published tests. It
+            asks for the one signal it&apos;s missing instead of dumping a list
+            — and it can only recommend what it actually retrieved.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">

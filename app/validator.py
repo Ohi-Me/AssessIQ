@@ -45,7 +45,7 @@ def validate_recommendations(recommendations: List[Dict]) -> Tuple[List[Dict], L
             errors.append(f"Item {i} ({name}): missing URL.")
             continue
 
-        # URL must be from SHL catalog
+        # URL must be from the catalog
         if url not in catalog_urls:
             # Try to find correct URL from catalog
             correct_url = _find_url_by_name(name)

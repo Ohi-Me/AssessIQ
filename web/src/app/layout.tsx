@@ -22,7 +22,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "AssessIQ — AI assessment recommender",
   description:
-    "A conversational agent that recommends the right talent assessment from a plain-English hiring need, grounded in SHL's real assessment catalog via hybrid BM25 + FAISS retrieval.",
+    "A conversational agent that recommends the right talent assessment from a plain-English hiring need, grounded in a real assessment catalog via hybrid BM25 + FAISS retrieval.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

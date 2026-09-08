@@ -111,7 +111,7 @@ def handle_recommend(messages: List[Dict]) -> ChatResponse:
 
     if not retrieved:
         return ChatResponse(
-            reply="I couldn't find matching assessments in the SHL catalog for your requirements. Could you provide more details about the role and skills you need to assess?",
+            reply="I couldn't find matching assessments in the catalog for your requirements. Could you provide more details about the role and skills you need to assess?",
             recommendations=[],
             end_of_conversation=False,
         )

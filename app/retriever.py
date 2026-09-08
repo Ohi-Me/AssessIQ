@@ -206,6 +206,12 @@ SKILL_KEYWORDS = {
     "excel": ["excel", "spreadsheet", "vba"],
     "data analysis": ["data analysis", "analytics", "data analyst", "bi", "tableau", "power bi"],
     "machine learning": ["machine learning", "ml", "deep learning", "ai", "nlp", "tensorflow", "pytorch"],
+    # Category names must be substrings of the catalog's own skill/tag vocabulary
+    # for the skill boost to land.
+    "programming": ["programming", "coding", "software", "developer", "engineer",
+                    "sde", "swe", "backend", "frontend", "full stack", "debugging"],
+    "algorithms": ["algorithm", "data structure", "dsa"],
+    "problem solving": ["problem solving", "problem-solving", "aptitude"],
     "leadership": ["leadership", "management", "lead", "manage", "team lead"],
     "sales": ["sales", "selling", "crm", "account"],
     "customer service": ["customer service", "customer support", "contact center", "call center"],
@@ -213,6 +219,11 @@ SKILL_KEYWORDS = {
     "numerical": ["numerical", "quantitative", "statistics", "math", "finance"],
     "verbal": ["verbal", "reading", "writing", "language", "english"],
 }
+
+
+def _mentions(text: str, keyword: str) -> bool:
+    """Whole-token match, so short keys like 'ai' or 'ml' don't fire inside 'email'."""
+    return re.search(rf"(?<!\w){re.escape(keyword)}(?!\w)", text) is not None
 
 
 def extract_constraints(messages: List[Dict]) -> Dict:
@@ -254,7 +265,7 @@ def extract_constraints(messages: List[Dict]) -> Dict:
 
     # Skills — FIX: actually extract and populate
     for skill, keywords in SKILL_KEYWORDS.items():
-        if any(kw in full_text for kw in keywords):
+        if any(_mentions(full_text, kw) for kw in keywords):
             if skill not in constraints["skills"]:
                 constraints["skills"].append(skill)
 
@@ -353,12 +364,17 @@ def _apply_metadata_filters(
         if max_dur and item.get("duration_minutes", 0) > max_dur:
             continue
 
+        # RRF scores are deliberately flat — rank 1 to rank 20 spans only ~25%.
+        # Boosts therefore have to stay small or they reorder the list wholesale:
+        # a 1.3x seniority bump alone could lift the worst candidate to the top.
+        # Seniority and test type are nudges; skill overlap is the real signal.
+
         # Soft boost: seniority match
         seniority = constraints.get("seniority", [])
         item_levels = item.get("job_levels", [])
         if seniority and item_levels:
             if any(s in item_levels for s in seniority):
-                score *= 1.3
+                score *= 1.06
 
         # Soft boost: test type preference match
         pref_types = constraints.get("test_types", [])
@@ -371,7 +387,7 @@ def _apply_metadata_filters(
                 else:
                     flat_types.append(t)
             if item_type in flat_types:
-                score *= 1.25
+                score *= 1.05
 
         # Soft boost: skill match in item tags/skills
         user_skills = constraints.get("skills", [])
@@ -379,7 +395,7 @@ def _apply_metadata_filters(
         if user_skills and item_skills:
             matches = sum(1 for s in user_skills if any(s in is_ for is_ in item_skills))
             if matches > 0:
-                score *= (1.0 + 0.15 * matches)
+                score *= (1.0 + 0.22 * matches)
 
         filtered.append((idx, score))
 

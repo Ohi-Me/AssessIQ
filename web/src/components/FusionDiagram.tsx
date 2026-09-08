@@ -2,18 +2,23 @@
 
 import { useReveal } from "@/lib/useReveal";
 
-const LEXICAL = ["Core Java", "Java 8 (New)", "Selenium", "SQL Server"];
+const LEXICAL = [
+  "Automata — Fix the Code",
+  "Core Java",
+  "Automata Pro",
+  "SQL (New)",
+];
 const SEMANTIC = [
-  "Customer Contact Styles",
-  "Verify Verbal Reasoning",
-  "RemoteWorkQ",
-  "Java 8 (New)",
+  "Graduate 8.0",
+  "Verify G+",
+  "Technology Professional",
+  "Core Java",
 ];
 const FUSED = [
-  "Java 8 (New)",
   "Core Java",
-  "Customer Contact Styles",
-  "Verify Verbal Reasoning",
+  "Automata — Fix the Code",
+  "Graduate 8.0",
+  "Verify G+",
 ];
 
 const CONNECTORS: { col: "lex" | "sem"; rank: number; toRank: number }[] = [
@@ -39,7 +44,7 @@ export default function FusionDiagram() {
       <p className="mb-6 text-sm text-muted">
         For the request{" "}
         <span className="text-ink">
-          “Hiring a Java developer who works with stakeholders”
+          “Hiring an SDE intern — coding and problem solving”
         </span>
         , each retriever hears something different:
       </p>
@@ -49,7 +54,7 @@ export default function FusionDiagram() {
           viewBox="0 0 920 330"
           className="mx-auto min-w-[720px]"
           role="img"
-          aria-label="For the query 'Hiring a Java developer who works with stakeholders', BM25 keyword search returns Java skill tests while FAISS semantic search returns communication and personality assessments. Reciprocal Rank Fusion combines them into one shortlist covering both halves of the request."
+          aria-label="For the query 'Hiring an SDE intern for coding and problem solving', BM25 keyword search returns coding tests while FAISS semantic search returns early-career aptitude assessments. Reciprocal Rank Fusion combines them into one shortlist covering both coding ability and graduate-level aptitude."
         >
           <text
             x={LEX.mid}
