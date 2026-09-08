@@ -1,13 +1,10 @@
 const STACK = [
-  ["Framework", "FastAPI"],
-  ["Embeddings", "all-MiniLM-L6-v2"],
-  ["Vector search", "FAISS"],
-  ["Keyword search", "BM25 (rank-bm25)"],
+  ["API", "FastAPI"],
+  ["Keyword search", "BM25"],
+  ["Semantic search", "FAISS · all-MiniLM-L6-v2"],
   ["Fusion", "Reciprocal Rank Fusion"],
   ["LLM", "Groq · gpt-oss-120b"],
   ["Fallback", "Gemini 2.5 Flash"],
-  ["Typical latency", "2–5s"],
-  ["Hard timeout", "25s"],
 ];
 
 export default function TechStack() {

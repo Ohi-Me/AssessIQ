@@ -51,13 +51,15 @@ export default function HowItWorks() {
 
         <figure className="mt-20 border border-border bg-bg p-6 sm:p-10">
           <FusionDiagram />
-          <figcaption className="mt-6 border-t border-border pt-4 text-sm leading-relaxed text-muted">
+          <figcaption className="mt-8 border-t border-border pt-4 text-sm leading-relaxed text-muted">
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-2">
               Fig. 2 —{" "}
             </span>
-            Two rankings for one query. Solid lines carry keyword matches,
-            dashed lines carry semantic ones; an assessment that scores on both
-            sides is pushed to the top of the fused list.
+            Keyword search finds the Java skills tests but misses
+            &ldquo;stakeholders&rdquo;; semantic search catches the
+            communication side but ranks Java lower. Fusion returns a shortlist
+            that covers both halves of the request — and anything scoring on
+            both sides, like Java 8, goes to the top.
           </figcaption>
         </figure>
       </div>
