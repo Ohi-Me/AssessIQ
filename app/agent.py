@@ -27,6 +27,7 @@ from app.prompts import (
     MAX_TURNS_REPLY,
 )
 from app.validator import validate_recommendations, extract_recommendations_from_llm_reply
+from app.metrics import StageTimer
 from app.llm_client import call_llm
 
 # Hard cap: max 8 messages (user + assistant combined) keeps conversations
@@ -94,9 +95,12 @@ def build_retrieval_query(messages: List[Dict]) -> str:
 # Handlers
 # ──────────────────────────────────────────────────────────────────
 
-def handle_clarify(messages: List[Dict], signals: Dict) -> ChatResponse:
-    prompt = clarification_prompt(messages, signals)
-    reply = call_llm(prompt, max_tokens=200)
+def handle_clarify(messages: List[Dict], signals: Dict,
+                   timer: Optional[StageTimer] = None) -> ChatResponse:
+    timer = timer or StageTimer()
+    with timer.stage("generation"):
+        prompt = clarification_prompt(messages, signals)
+        reply = call_llm(prompt, max_tokens=200)
     return ChatResponse(
         reply=reply,
         recommendations=[],
@@ -104,9 +108,11 @@ def handle_clarify(messages: List[Dict], signals: Dict) -> ChatResponse:
     )
 
 
-def handle_recommend(messages: List[Dict]) -> ChatResponse:
-    query = build_retrieval_query(messages)
-    retrieved = retrieve(query, messages=messages, top_k=10)
+def handle_recommend(messages: List[Dict], timer: Optional[StageTimer] = None) -> ChatResponse:
+    timer = timer or StageTimer()
+    with timer.stage("retrieval"):
+        query = build_retrieval_query(messages)
+        retrieved = retrieve(query, messages=messages, top_k=10)
     logger.info(f"Retrieved {len(retrieved)} docs for recommendation.")
 
     if not retrieved:
@@ -116,11 +122,13 @@ def handle_recommend(messages: List[Dict]) -> ChatResponse:
             end_of_conversation=False,
         )
 
-    prompt = recommendation_prompt(messages, retrieved)
-    reply = call_llm(prompt, max_tokens=500)
+    with timer.stage("generation"):
+        prompt = recommendation_prompt(messages, retrieved)
+        reply = call_llm(prompt, max_tokens=500)
 
-    recs_raw = extract_recommendations_from_llm_reply(reply, retrieved)
-    recs_valid, errors = validate_recommendations(recs_raw)
+    with timer.stage("validation"):
+        recs_raw = extract_recommendations_from_llm_reply(reply, retrieved)
+        recs_valid, errors = validate_recommendations(recs_raw)
 
     if errors:
         logger.warning(f"Validation errors: {errors}")
@@ -220,6 +228,7 @@ def process_chat(messages: List[Dict]) -> ChatResponse:
     Takes full conversation history, returns next response.
     """
     logger.info(f"Processing chat with {len(messages)} messages.")
+    timer = StageTimer()
 
     # Hard turn cap (see MAX_MESSAGES). If we're AT the cap, return a
     # graceful close instead of erroring.
@@ -228,7 +237,8 @@ def process_chat(messages: List[Dict]) -> ChatResponse:
         return handle_max_turns()
 
     # Classify intent
-    classification = classify(messages)
+    with timer.stage("guardrails"):
+        classification = classify(messages)
     intent = classification["intent"]
     logger.info(
         f"Intent: {intent} | Score: {classification['context_score']} | "
@@ -249,15 +259,18 @@ def process_chat(messages: List[Dict]) -> ChatResponse:
         response = handle_refine(messages)
 
     elif intent == "vague":
-        response = handle_clarify(messages, classification["signals"])
+        response = handle_clarify(messages, classification["signals"], timer)
 
     else:  # intent == "ok"
-        response = handle_recommend(messages)
+        response = handle_recommend(messages, timer)
 
     # Secondary end-of-conversation check (thanks/done signals from user)
     # Only override to True, never set to False (handle_recommend already sets True on shortlist)
     if not response.end_of_conversation:
         response.end_of_conversation = is_end_of_conversation(messages, response.reply)
+
+    response.timings = timer.as_dict()
+    timer.log(intent)
 
     logger.info(
         f"Response: intent={intent}, recs={len(response.recommendations)}, "

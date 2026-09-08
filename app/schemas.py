@@ -3,7 +3,7 @@ Pydantic schemas — strict API contract.
 The response schema is fixed by design: downstream clients depend on this exact shape.
 """
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from pydantic import BaseModel, Field, field_validator
 
 
@@ -35,6 +35,8 @@ class ChatResponse(BaseModel):
     reply: str
     recommendations: List[Recommendation] = Field(default_factory=list)
     end_of_conversation: bool = False
+    # Per-stage latency in ms (guardrails / retrieval / generation / validation).
+    timings: Optional[Dict[str, float]] = None
 
     @field_validator("recommendations")
     @classmethod

@@ -21,6 +21,8 @@ export interface ChatResponse {
   reply: string;
   recommendations: Recommendation[];
   end_of_conversation: boolean;
+  /** Per-stage latency in ms: guardrails / retrieval / generation / validation / total */
+  timings?: Record<string, number>;
 }
 
 export const TEST_TYPE_LABELS: Record<string, string> = {

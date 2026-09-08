@@ -12,6 +12,7 @@ Strategy:
 import re
 import pickle
 import numpy as np
+from functools import lru_cache
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 
@@ -316,16 +317,45 @@ def _bm25_retrieve(query: str, k: int = 20) -> List[Tuple[int, float]]:
     return [(int(idx), float(scores[idx])) for idx in top_k if scores[idx] > 0]
 
 
+@lru_cache(maxsize=1024)
+def _embed_query(text: str) -> np.ndarray:
+    """
+    Encode a query, memoized on the exact text.
+
+    Embedding is the dominant cost inside retrieval — the searches themselves
+    are microseconds against 31 vectors. Demo traffic repeats the same handful
+    of queries, so this turns most retrievals into pure search.
+
+    The returned array is treated as read-only; faiss.search does not mutate it.
+    """
+    model = _get_sentence_model()
+    emb = model.encode([text], normalize_embeddings=True)
+    return np.array(emb, dtype=np.float32)
+
+
 def _faiss_retrieve(query: str, k: int = 20) -> List[Tuple[int, float]]:
     """FAISS semantic retrieval. Returns list of (catalog_index, score)."""
     if _faiss_index is None:
         return []
-    model = _get_sentence_model()
-    query_expanded = expand_query(query)
-    emb = model.encode([query_expanded], normalize_embeddings=True)
-    emb = np.array(emb, dtype=np.float32)
+    emb = _embed_query(expand_query(query))
     scores, indices = _faiss_index.search(emb, min(k, _faiss_index.ntotal))
     return [(int(idx), float(score)) for idx, score in zip(indices[0], scores[0]) if idx >= 0]
+
+
+def cache_stats() -> Dict[str, int]:
+    """Embedding cache counters, surfaced by the benchmark and /health."""
+    info = _embed_query.cache_info()
+    return {
+        "hits": info.hits,
+        "misses": info.misses,
+        "size": info.currsize,
+        "maxsize": info.maxsize or 0,
+    }
+
+
+def clear_caches() -> None:
+    """Reset memoized state. Used by benchmarks to measure a cold path."""
+    _embed_query.cache_clear()
 
 
 def _rrf_fuse(

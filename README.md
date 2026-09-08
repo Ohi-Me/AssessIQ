@@ -154,10 +154,32 @@ Swagger docs: `http://127.0.0.1:8000/docs`
 
 ## Performance
 
-- Cold start: ~0.3s
-- Typical latency: ~2–5s
-- Hard timeout: 25s per request
-- Embedding model preloaded at startup
+Every request is timed per stage — guardrails, retrieval, generation,
+validation — and the breakdown is returned on the response as `timings` and
+written to the logs, so it is clear which stage owns a given latency.
+
+The breakdown showed retrieval was dominated by query embedding; the searches
+themselves are microseconds against 31 vectors. Embeddings are now memoized on
+the exact query text, and successful LLM completions are cached on a hash of
+the prompt (failures are never cached — caching one rate-limited response would
+pin the error in place).
+
+Retrieval latency, measured with `python scripts/benchmark.py`
+(8 queries × 5 repeats, local CPU):
+
+| | cold cache | warm cache |
+| ------ | ---------- | ---------- |
+| p50    | 21.4 ms    | 0.9 ms     |
+| p95    | 31.9 ms    | 1.7 ms     |
+| mean   | 24.4 ms    | 1.0 ms     |
+
+**23.8× faster at p50.** Generation is excluded from the benchmark on purpose:
+it is a call to a third-party API, so its latency measures the provider rather
+than this system. Live cache counters are exposed at `GET /stats`.
+
+End-to-end latency is dominated by generation (seconds, provider-bound), not by
+anything in this service. The embedding model is loaded at startup rather than
+on first query, and requests are capped at 25s.
 
 ---
 

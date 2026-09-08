@@ -22,6 +22,13 @@ const GIVE_UP_MS = 90000;
 interface Turn {
   message: ChatMessage;
   recommendations?: Recommendation[];
+  timings?: Record<string, number>;
+}
+
+const STAGE_ORDER = ["guardrails", "retrieval", "generation", "validation"];
+
+function fmt(ms: number) {
+  return ms >= 1000 ? `${(ms / 1000).toFixed(1)}s` : `${Math.round(ms)}ms`;
 }
 
 export default function ChatDemo() {
@@ -67,6 +74,7 @@ export default function ChatDemo() {
         {
           message: { role: "assistant", content: res.reply },
           recommendations: res.recommendations,
+          timings: res.timings,
         },
       ]);
       setEnded(res.end_of_conversation && res.recommendations.length > 0);
@@ -145,6 +153,23 @@ export default function ChatDemo() {
             >
               {t.message.content}
             </div>
+
+            {t.timings && (
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted-2">
+                {STAGE_ORDER.filter((s) => t.timings?.[s] !== undefined).map(
+                  (s) => (
+                    <span key={s}>
+                      {s} {fmt(t.timings![s])}
+                    </span>
+                  ),
+                )}
+                {t.timings.total !== undefined && (
+                  <span className="text-muted">
+                    total {fmt(t.timings.total)}
+                  </span>
+                )}
+              </div>
+            )}
 
             {t.recommendations && t.recommendations.length > 0 && (
               <ul className="space-y-2">

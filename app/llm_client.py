@@ -5,7 +5,9 @@ Both free tier. Groq is faster (< 3s), Gemini is fallback.
 
 import os
 import asyncio
+import hashlib
 import time
+from collections import OrderedDict
 from typing import Optional
 
 from dotenv import load_dotenv
@@ -85,8 +87,52 @@ def _call_gemini(prompt: str, max_tokens: int = 600) -> Optional[str]:
 # Public API
 # ──────────────────────────────────────────────────────────────────
 
+HARD_FALLBACK = (
+    "I'm having trouble processing your request right now. Please try again in a moment."
+)
+
+# Generation dominates request latency — retrieval is milliseconds, a completion
+# is seconds. Identical prompts recur constantly (the demo's starter prompts, a
+# reloaded page), so successful completions are memoized. Failures are never
+# cached: caching one rate-limited response would pin the error in place.
+_CACHE_MAX = 256
+_response_cache: "OrderedDict[str, str]" = OrderedDict()
+_cache_hits = 0
+_cache_misses = 0
+
+
+def _cache_key(prompt: str, max_tokens: int) -> str:
+    return hashlib.sha256(f"{max_tokens}:{prompt}".encode("utf-8")).hexdigest()
+
+
+def cache_stats() -> dict:
+    return {
+        "hits": _cache_hits,
+        "misses": _cache_misses,
+        "size": len(_response_cache),
+        "maxsize": _CACHE_MAX,
+    }
+
+
+def clear_cache() -> None:
+    global _cache_hits, _cache_misses
+    _response_cache.clear()
+    _cache_hits = 0
+    _cache_misses = 0
+
+
 def call_llm(prompt: str, max_tokens: int = 600) -> str:
-    """Call LLM with Groq primary, Gemini fallback."""
+    """Call LLM with Groq primary, Gemini fallback. Successful replies are cached."""
+    global _cache_hits, _cache_misses
+
+    key = _cache_key(prompt, max_tokens)
+    cached = _response_cache.get(key)
+    if cached is not None:
+        _response_cache.move_to_end(key)
+        _cache_hits += 1
+        logger.info("LLM cache hit")
+        return cached
+    _cache_misses += 1
 
     # Try Groq first. One retry, because the free tier rate-limits under bursts
     # and a single 429 was enough to show the generic error text to a visitor.
@@ -98,7 +144,7 @@ def call_llm(prompt: str, max_tokens: int = 600) -> str:
         result = _call_groq(prompt, max_tokens)
 
     if result:
-        return result
+        return _remember(key, result)
 
     # Fallback to Gemini
     logger.info("Falling back to Gemini...")
@@ -106,12 +152,20 @@ def call_llm(prompt: str, max_tokens: int = 600) -> str:
     result = _call_gemini(prompt, max_tokens)
 
     if result:
-        return result
+        return _remember(key, result)
 
-    # Hard fallback
+    # Hard fallback — deliberately not cached.
     logger.error("All LLM providers failed!")
 
-    return "I'm having trouble processing your request right now. Please try again in a moment."
+    return HARD_FALLBACK
+
+
+def _remember(key: str, reply: str) -> str:
+    _response_cache[key] = reply
+    _response_cache.move_to_end(key)
+    while len(_response_cache) > _CACHE_MAX:
+        _response_cache.popitem(last=False)
+    return reply
 
 
 async def call_llm_async(prompt: str, max_tokens: int = 600) -> str:

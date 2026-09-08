@@ -86,6 +86,18 @@ async def health():
     return HealthResponse(status="ok")
 
 
+@app.get("/stats")
+async def stats():
+    """Cache counters, for checking hit rates against a running instance."""
+    from app.retriever import cache_stats as embedding_cache_stats
+    from app.llm_client import cache_stats as llm_cache_stats
+
+    return {
+        "embedding_cache": embedding_cache_stats(),
+        "llm_cache": llm_cache_stats(),
+    }
+
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
